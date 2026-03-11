@@ -31,12 +31,12 @@
 <body>
 
 <h1>Remoção de Estilos e Scripts Inline</h1>
-<div class="counter">10 resolvidos · 41 pendentes (frontend) · 20 adiados (admin/login)</div>
-<div class="progress"><div class="progress-bar" style="width: 14.08%"></div></div>
+<div class="counter">12 resolvidos · 39 pendentes (frontend) · 20 adiados (admin/login)</div>
+<div class="progress"><div class="progress-bar" style="width: 16.90%"></div></div>
 
 <!-- ═══════ RESOLVIDOS ═══════ -->
 
-<h2>Resolvidos <span class="pill pill-done">10 itens</span></h2>
+<h2>Resolvidos <span class="pill pill-done">12 itens</span></h2>
 <ul>
   <li class="done">
     <span class="done-title"><span class="check">✓</span> LP iFood — cores de títulos e links</span>
@@ -78,19 +78,25 @@
     <span class="done-title"><span class="check">✓</span> Single material — estilos de headings e breadcrumb</span>
     <span class="done-feedback">Criei single-material.css com os estilos de cor e tamanho dos headings e a ocultação de itens do breadcrumb. Todos os seletores foram escopados com .single-material para não vazar para outras páginas. Carregado via is_singular('material').</span>
   </li>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> Página de contato — estilos de formulário e select chevron</span>
+    <span class="done-feedback">Extraí os estilos do formulário de contato para page-contact.css, incluindo o select com chevron SVG animado, hover nos campos e posição dos erros. O CSS já era escopado por #contato_form, então não precisou de classe extra de isolamento.</span>
+  </li>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> iFood contato — estilos de formulário (compartilhado)</span>
+    <span class="done-feedback">A página de contato do iFood usava CSS 100% idêntico ao da página de contato principal. Removi o bloco inline e reaproveito o mesmo page-contact.css, carregado condicionalmente para ambos os templates via is_page_template no Enqueue.php.</span>
+  </li>
 </ul>
 
 <!-- ═══════ PENDENTES ═══════ -->
 
-<h2>Pendentes <span class="pill pill-todo">41 itens</span></h2>
+<h2>Pendentes <span class="pill pill-todo">39 itens</span></h2>
 <ul>
-  <li class="todo"><span class="dash">–</span> Página de contato + select chevron</li>
   <li class="todo"><span class="dash">–</span> Arquivo de produtos</li>
   <li class="todo"><span class="dash">–</span> Categoria</li>
   <li class="todo"><span class="dash">–</span> Busca</li>
   <li class="todo"><span class="dash">–</span> Institucional + swiper bullets</li>
   <li class="todo"><span class="dash">–</span> Gerador de tabela nutricional</li>
-  <li class="todo"><span class="dash">–</span> iFood contato + select chevron</li>
   <li class="todo"><span class="dash">–</span> Receitas sob medida</li>
   <li class="todo"><span class="dash">–</span> Single receita + swiper bullets</li>
   <li class="todo"><span class="dash">–</span> Single receita — impressão</li>
