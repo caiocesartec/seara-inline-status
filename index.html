@@ -21,7 +21,7 @@
   .dash { color: #ccc; font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
   .item-title { flex: 1; font-weight: 500; }
   .item-number { display: inline-block; background: #e5e7eb; color: #444; width: 24px; height: 24px; border-radius: 12px; text-align: center; line-height: 24px; font-size: 0.75rem; font-weight: 600; margin-right: 4px; flex-shrink: 0; }
-  .item-desc { font-size: 0.8rem; color: #555; margin-top: 4px; line-height: 1.4; font-weight: normal; background: #f3f4f6; padding: 6px; border-radius: 4px; }
+  .item-desc { font-size: 0.8rem; color: #000; margin-top: 4px; line-height: 1.4; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -92,34 +92,7 @@
     <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
       <span class="check">✓</span>
       <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">7</span><div class="item-title">Header — OneTrust wrapper</div></div>
-        <div class="item-desc">Removi o script inline do OneTrust wrapper do header que estava em PHP. Criei vendor/onetrust-wrapper.js enqueuando no head, mantendo funcionamento crítico de gerenciamento de cookies com melhor segurança.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">8</span><div class="item-title">Header Gourmet Gradina — remoção de script vazio</div></div>
-        <div class="item-desc">Identifiquei e removi um &lt;script&gt; vazio do header Gourmet Gradina. Era código legado sem valor funcional, eliminando completamente requisição HTTP desnecessária e reduzindo peso da página.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">9</span><div class="item-title">Header Gradina — remoção de script vazio</div></div>
-        <div class="item-desc">Identifiquei e removi script vazio replicado no header padrão Gradina. Era código remanescente não funcional, melhorando performance ao eliminar requisição vazia e reduzindo clutter do template.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">10</span><div class="item-title">Admin — meta box Chefs</div></div>
+        <div style="display: flex; align-items: center;"><span class="item-number">7</span><div class="item-title">Admin — meta box Chefs</div></div>
         <div class="item-desc">Removi estilos inline do admin e um style attribute do JavaScript do painel Chefs. Criei admin-chefs-metabox.css com classes para cards e preview, melhorando segurança e permitindo reutilização de estilos.</div>
       </div>
     </div>
@@ -128,8 +101,35 @@
     <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
       <span class="check">✓</span>
       <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">11</span><div class="item-title">Login — customizações visuais</div></div>
+        <div style="display: flex; align-items: center;"><span class="item-number">8</span><div class="item-title">Login — customizações visuais</div></div>
         <div class="item-desc">Extrai 196 linhas de estilos inline e 2 scripts da página de login. Criei login.css e login-customization.js enqueuando via login_enqueue_scripts, reduzindo 250+ linhas de código inline e melhorando CSP compliance.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div style="display: flex; align-items: center;"><span class="item-number">9</span><div class="item-title">Header — OneTrust wrapper</div></div>
+        <div class="item-desc">Removi o script inline do OneTrust wrapper do header que estava em PHP. Criei vendor/onetrust-wrapper.js enqueuando no head, mantendo funcionamento crítico de gerenciamento de cookies com melhor segurança.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div style="display: flex; align-items: center;"><span class="item-number">10</span><div class="item-title">Header Gourmet Gradina — remoção de script vazio</div></div>
+        <div class="item-desc">Identifiquei e removi um &lt;script&gt; vazio do header Gourmet Gradina. Era código legado sem valor funcional, eliminando completamente requisição HTTP desnecessária e reduzindo peso da página.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div style="display: flex; align-items: center;"><span class="item-number">11</span><div class="item-title">Header Gradina — remoção de script vazio</div></div>
+        <div class="item-desc">Identifiquei e removi script vazio replicado no header padrão Gradina. Era código remanescente não funcional, melhorando performance ao eliminar requisição vazia e reduzindo clutter do template.</div>
       </div>
     </div>
   </li>
