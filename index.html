@@ -38,25 +38,7 @@
     <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
       <span class="check">✓</span>
       <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">1</span><div class="item-title">LP iFood — cores de títulos e links</div></div>
-        <div class="item-desc">Removi os inline styles que customizavam cores de títulos (#FF5300) e links na landing page iFood. Migrei tudo para page-ifood.css com seletores específicos, melhorando manutenibilidade e permitindo ajustes centralizados.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">2</span><div class="item-title">LP iFood — animação marquee</div></div>
-        <div class="item-desc">Extrai a animação CSS do marquee da página iFood que estava inline. Criei components/marquee.css com keyframes e implementei enqueue condicional, reduzindo complexidade do template e aumentando conformidade com CSP.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">3</span><div class="item-title">Produto detalhe — estilos de impressão</div></div>
+        <div style="display: flex; align-items: center;"><span class="item-number">1</span><div class="item-title">Produto detalhe — estilos de impressão</div></div>
         <div class="item-desc">Removi os estilos de impressão inline (@media print) do modal de produtos. Criei print-produto-detalhe.css e atualizei script JS para carregá-la dinamicamente, separando responsabilidades e melhorando segurança geral.</div>
       </div>
     </div>
@@ -65,8 +47,26 @@
     <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
       <span class="check">✓</span>
       <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">4</span><div class="item-title">Galeria — scrollbar customizado</div></div>
+        <div style="display: flex; align-items: center;"><span class="item-number">2</span><div class="item-title">Galeria — scrollbar customizado</div></div>
         <div class="item-desc">Extrai a customização de scrollbar (#e8e4e4, ::-webkit-scrollbar) que estava inline. Migrei para utils/scrollbar.css com enqueue condicional, facilitando futura manutenção de temas visuais e consistência design.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div style="display: flex; align-items: center;"><span class="item-number">3</span><div class="item-title">LP iFood — cores de títulos e links</div></div>
+        <div class="item-desc">Removi os inline styles que customizavam cores de títulos (#FF5300) e links na landing page iFood. Migrei tudo para page-ifood.css com seletores específicos, melhorando manutenibilidade e permitindo ajustes centralizados.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div style="display: flex; align-items: center;"><span class="item-number">4</span><div class="item-title">LP iFood — animação marquee</div></div>
+        <div class="item-desc">Extrai a animação CSS do marquee da página iFood que estava inline. Criei components/marquee.css com keyframes e implementei enqueue condicional, reduzindo complexidade do template e aumentando conformidade com CSP.</div>
       </div>
     </div>
   </li>
@@ -83,43 +83,7 @@
     <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
       <span class="check">✓</span>
       <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">6</span><div class="item-title">Admin — meta box CTA iFood</div></div>
-        <div class="item-desc">Extrai todos os estilos do painel meta box CTA iFood que estavam inline. Criei admin-cta-metabox.css e implementei enqueue via admin_enqueue_scripts, permitindo gestão visual centralizada e estilos consistentes.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">7</span><div class="item-title">Admin — meta box Chefs</div></div>
-        <div class="item-desc">Removi estilos inline do admin e um style attribute do JavaScript do painel Chefs. Criei admin-chefs-metabox.css com classes para cards e preview, melhorando segurança e permitindo reutilização de estilos.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">8</span><div class="item-title">Login — customizações visuais</div></div>
-        <div class="item-desc">Extrai 196 linhas de estilos inline e 2 scripts da página de login. Criei login.css e login-customization.js enqueuando via login_enqueue_scripts, reduzindo 250+ linhas de código inline e melhorando CSP compliance.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">9</span><div class="item-title">Header — OneTrust wrapper</div></div>
-        <div class="item-desc">Removi o script inline do OneTrust wrapper do header que estava em PHP. Criei vendor/onetrust-wrapper.js enqueuando no head, mantendo funcionamento crítico de gerenciamento de cookies com melhor segurança.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">10</span><div class="item-title">Header Gourmet Gradina — remoção de script vazio</div></div>
+        <div style="display: flex; align-items: center;"><span class="item-number">6</span><div class="item-title">Header Gourmet Gradina — remoção de script vazio</div></div>
         <div class="item-desc">Identifiquei e removi um &lt;script&gt; vazio do header Gourmet Gradina. Era código legado sem valor funcional, eliminando completamente requisição HTTP desnecessária e reduzindo peso da página.</div>
       </div>
     </div>
@@ -128,8 +92,44 @@
     <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
       <span class="check">✓</span>
       <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">11</span><div class="item-title">Header Gradina — remoção de script vazio</div></div>
+        <div style="display: flex; align-items: center;"><span class="item-number">7</span><div class="item-title">Header Gradina — remoção de script vazio</div></div>
         <div class="item-desc">Identifiquei e removi script vazio replicado no header padrão Gradina. Era código remanescente não funcional, melhorando performance ao eliminar requisição vazia e reduzindo clutter do template.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div style="display: flex; align-items: center;"><span class="item-number">8</span><div class="item-title">Header — OneTrust wrapper</div></div>
+        <div class="item-desc">Removi o script inline do OneTrust wrapper do header que estava em PHP. Criei vendor/onetrust-wrapper.js enqueuando no head, mantendo funcionamento crítico de gerenciamento de cookies com melhor segurança.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div style="display: flex; align-items: center;"><span class="item-number">9</span><div class="item-title">Admin — meta box CTA iFood</div></div>
+        <div class="item-desc">Extrai todos os estilos do painel meta box CTA iFood que estavam inline. Criei admin-cta-metabox.css e implementei enqueue via admin_enqueue_scripts, permitindo gestão visual centralizada e estilos consistentes.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div style="display: flex; align-items: center;"><span class="item-number">10</span><div class="item-title">Admin — meta box Chefs</div></div>
+        <div class="item-desc">Removi estilos inline do admin e um style attribute do JavaScript do painel Chefs. Criei admin-chefs-metabox.css com classes para cards e preview, melhorando segurança e permitindo reutilização de estilos.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div style="display: flex; align-items: center;"><span class="item-number">11</span><div class="item-title">Login — customizações visuais</div></div>
+        <div class="item-desc">Extrai 196 linhas de estilos inline e 2 scripts da página de login. Criei login.css e login-customization.js enqueuando via login_enqueue_scripts, reduzindo 250+ linhas de código inline e melhorando CSP compliance.</div>
       </div>
     </div>
   </li>
