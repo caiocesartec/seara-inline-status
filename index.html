@@ -10,214 +10,121 @@
   .progress-bar { background: #22c55e; height: 14px; border-radius: 8px; transition: width .3s; }
   .counter { font-size: 0.9rem; color: #666; margin-bottom: 24px; }
   h2 { font-size: 1rem; margin: 24px 0 8px; color: #555; border-bottom: 1px solid #eee; padding-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
-  h3 { font-size: 0.9rem; margin: 16px 0 8px; color: #666; font-weight: 600; }
+  h2.admin-header { color: #999; }
   .remaining { font-size: 0.8rem; background: #f3f4f6; color: #888; border-radius: 10px; padding: 2px 10px; font-weight: normal; }
   .done-pill { background: #bbf7d0; color: #166534; }
-  ul { list-style: none; padding: 0; margin: 0 0 20px 0; }
-  li { padding: 8px; border-radius: 4px; margin-bottom: 8px; font-size: 0.88rem; display: flex; align-items: flex-start; gap: 8px; }
-  li.done { background: #f0fdf4; color: #166534; flex-direction: column; }
+  .postponed-pill { background: #fef3c7; color: #92400e; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li { padding: 5px 8px; border-radius: 4px; margin-bottom: 3px; font-size: 0.88rem; display: flex; align-items: center; gap: 8px; }
+  li.done { background: #f0fdf4; color: #166534; }
   li.todo { background: #fafafa; color: #444; }
-  .check { color: #22c55e; font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
-  .dash { color: #ccc; font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
-  .item-title { flex: 1; font-weight: 500; }
-  .item-number { display: inline-block; background: #e5e7eb; color: #444; width: 24px; height: 24px; border-radius: 12px; text-align: center; line-height: 24px; font-size: 0.75rem; font-weight: 600; margin-right: 4px; flex-shrink: 0; }
-  .item-desc { font-size: 0.8rem; color: #000; margin-top: 4px; margin-left: 29px; line-height: 1.4; font-weight: 600; }
-  .highlight-section { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px; border-radius: 6px; margin-bottom: 24px; }
-  .highlight-section h2 { border: none; margin-top: 0; color: #92400e; }
-  .in-progress-section { background: #dbeafe; border-left: 4px solid #3b82f6; padding: 16px; border-radius: 6px; margin-bottom: 24px; }
-  .in-progress-section h2 { border: none; margin-top: 0; color: #1e3a8a; }
-  li.highlight { background: #fef3c7 !important; color: #92400e !important; }
-  li.in-progress { background: #dbeafe !important; color: #1e3a8a !important; }
+  li.postponed { background: #fffbeb; color: #92400e; opacity: 0.7; }
+  .check { color: #22c55e; font-size: 1rem; flex-shrink: 0; }
+  .dash { color: #ccc; font-size: 1rem; flex-shrink: 0; }
+  .clock { color: #d97706; font-size: 1rem; flex-shrink: 0; }
+  .separator { margin: 32px 0 16px; border: none; border-top: 2px dashed #e5e7eb; }
 </style>
 </head>
 <body>
 
 <h1>Remoção de Estilos e Scripts Inline</h1>
-<div class="counter">11 concluídos · 1 em execução · 70 a fazer</div>
-<div class="progress"><div class="progress-bar" style="width: 13.41%"></div></div>
+<div class="counter">9 executados · 42 restantes (frontend) · 20 adiados (admin/login)</div>
+<div class="progress"><div class="progress-bar" style="width: 12.67%"></div></div>
 
-<div class="highlight-section">
-<h2>✨ Última Entrega</h2>
-<ul style="margin: 0;">
-  <li class="highlight">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><div class="item-title">Login — customizações visuais</div></div>
-        <div class="item-desc">Extrai 196 linhas de estilos inline e 2 scripts da página de login. Criei login.css e login-customization.js enqueuando via login_enqueue_scripts, reduzindo 250+ linhas de código inline e melhorando CSP compliance.</div>
-      </div>
-    </div>
-  </li>
-</ul>
-</div>
+<!-- ═══════ FRONTEND ═══════ -->
 
-<div class="in-progress-section">
-<h2>⚙️ Em Execução</h2>
-<ul style="margin: 0;">
-  <li class="in-progress">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span style="color: #3b82f6; font-size: 1rem; flex-shrink: 0; margin-top: 1px;">⟳</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><div class="item-title">Single material</div></div>
-        <div class="item-desc">Próximo item a ser processado: extração de estilos e scripts inline da página de detalhe de material.</div>
-      </div>
-    </div>
-  </li>
-</ul>
-</div>
-
-<h2>✅ Concluído</h2>
-
-<h3>Estilos & Scripts — 10 itens</h3>
+<h2>Estilos CSS — Frontend <span><span class="remaining done-pill">5 executados</span> <span class="remaining">16 restantes</span></span></h2>
 <ul>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">2</span><div class="item-title">Admin — meta box Chefs</div></div>
-        <div class="item-desc">Removi estilos inline do admin e um style attribute do JavaScript do painel Chefs. Criei admin-chefs-metabox.css com classes para cards e preview, melhorando segurança e permitindo reutilização de estilos.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">3</span><div class="item-title">Admin — meta box CTA iFood</div></div>
-        <div class="item-desc">Extrai todos os estilos do painel meta box CTA iFood que estavam inline. Criei admin-cta-metabox.css e implementei enqueue via admin_enqueue_scripts, permitindo gestão visual centralizada e estilos consistentes.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">4</span><div class="item-title">Header — OneTrust wrapper</div></div>
-        <div class="item-desc">Removi o script inline do OneTrust wrapper do header que estava em PHP. Criei vendor/onetrust-wrapper.js enqueuando no head, mantendo funcionamento crítico de gerenciamento de cookies com melhor segurança.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">5</span><div class="item-title">Header Gradina — remoção de script vazio</div></div>
-        <div class="item-desc">Identifiquei e removi script vazio replicado no header padrão Gradina. Era código remanescente não funcional, melhorando performance ao eliminar requisição vazia e reduzindo clutter do template.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">6</span><div class="item-title">Header Gourmet Gradina — remoção de script vazio</div></div>
-        <div class="item-desc">Identifiquei e removi um &lt;script&gt; vazio do header Gourmet Gradina. Era código legado sem valor funcional, eliminando completamente requisição HTTP desnecessária e reduzindo peso da página.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">7</span><div class="item-title">Header — menu logado e sub-menus</div></div>
-        <div class="item-desc">Removi estilos complexos de menu com dropdown e animações do header que estavam inline. Criei header.css global e enqueue nos principais hooks, consolidando toda customização visual do header em arquivo único.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">8</span><div class="item-title">LP iFood — animação marquee</div></div>
-        <div class="item-desc">Extrai a animação CSS do marquee da página iFood que estava inline. Criei components/marquee.css com keyframes e implementei enqueue condicional, reduzindo complexidade do template e aumentando conformidade com CSP.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">9</span><div class="item-title">LP iFood — cores de títulos e links</div></div>
-        <div class="item-desc">Removi os inline styles que customizavam cores de títulos (#FF5300) e links na landing page iFood. Migrei tudo para page-ifood.css com seletores específicos, melhorando manutenibilidade e permitindo ajustes centralizados.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">10</span><div class="item-title">Galeria — scrollbar customizado</div></div>
-        <div class="item-desc">Extrai a customização de scrollbar (#e8e4e4, ::-webkit-scrollbar) que estava inline. Migrei para utils/scrollbar.css com enqueue condicional, facilitando futura manutenção de temas visuais e consistência design.</div>
-      </div>
-    </div>
-  </li>
-  <li class="done">
-    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
-      <span class="check">✓</span>
-      <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">11</span><div class="item-title">Produto detalhe — estilos de impressão</div></div>
-        <div class="item-desc">Removi os estilos de impressão inline (@media print) do modal de produtos. Criei print-produto-detalhe.css e atualizei script JS para carregá-la dinamicamente, separando responsabilidades e melhorando segurança geral.</div>
-      </div>
-    </div>
-  </li>
-</ul>
-
-<h2>⏳ A Fazer</h2>
-
-<h3>Estilos & Scripts — 70 itens</h3>
-<ul>
-  <li class="todo"><span class="dash">–</span> Página de contato</li>
-  <li class="todo"><span class="dash">–</span> Admin — meta box galeria</li>
-  <li class="todo"><span class="dash">–</span> Admin — importador (HTML standalone)</li>
-  <li class="todo"><span class="dash">–</span> Admin — meta box receita</li>
-  <li class="todo"><span class="dash">–</span> Admin — meta box produto</li>
-  <li class="todo"><span class="dash">–</span> Admin — menu</li>
+  <li class="done"><span class="check">✓</span> LP iFood — cores de títulos e links</li>
+  <li class="done"><span class="check">✓</span> LP iFood — animação marquee</li>
+  <li class="done"><span class="check">✓</span> Produto detalhe — estilos de impressão</li>
+  <li class="done"><span class="check">✓</span> Galeria — scrollbar customizado</li>
+  <li class="done"><span class="check">✓</span> Header — menu logado e sub-menus</li>
+  <li class="todo"><span class="dash">–</span> Single material</li>
+  <li class="todo"><span class="dash">–</span> Página de contato + select chevron</li>
   <li class="todo"><span class="dash">–</span> Arquivo de produtos</li>
   <li class="todo"><span class="dash">–</span> Categoria</li>
   <li class="todo"><span class="dash">–</span> Busca</li>
-  <li class="todo"><span class="dash">–</span> Institucional</li>
+  <li class="todo"><span class="dash">–</span> Institucional + swiper bullets</li>
   <li class="todo"><span class="dash">–</span> Gerador de tabela nutricional</li>
-  <li class="todo"><span class="dash">–</span> iFood contato</li>
+  <li class="todo"><span class="dash">–</span> iFood contato + select chevron</li>
   <li class="todo"><span class="dash">–</span> Receitas sob medida</li>
-  <li class="todo"><span class="dash">–</span> Single receita</li>
+  <li class="todo"><span class="dash">–</span> Single receita + swiper bullets</li>
   <li class="todo"><span class="dash">–</span> Single receita — impressão</li>
   <li class="todo"><span class="dash">–</span> Arquivo de receitas</li>
   <li class="todo"><span class="dash">–</span> Política de privacidade</li>
   <li class="todo"><span class="dash">–</span> Arquivo de materiais</li>
-  <li class="todo"><span class="dash">–</span> iFood regras de produtos</li>
+  <li class="todo"><span class="dash">–</span> iFood regras de produtos + marquee</li>
   <li class="todo"><span class="dash">–</span> Receita detalhe — impressão</li>
+</ul>
+
+<h2>Scripts JS — Frontend <span><span class="remaining done-pill">3 executados</span> <span class="remaining">21 restantes</span></span></h2>
+<ul>
+  <li class="done"><span class="check">✓</span> Header — OneTrust wrapper</li>
+  <li class="done"><span class="check">✓</span> Header Gourmet Gradina — remoção de script vazio</li>
+  <li class="done"><span class="check">✓</span> Header Gradina — remoção de script vazio</li>
   <li class="todo"><span class="dash">–</span> LP iFood — marquee JS</li>
   <li class="todo"><span class="dash">–</span> Produto detalhe — script de impressão</li>
   <li class="todo"><span class="dash">–</span> Galeria — accordion + filtros</li>
-  <li class="todo"><span class="dash">–</span> Admin LP iFood — media uploader (3 variações)</li>
-  <li class="todo"><span class="dash">–</span> Admin LP iFood — repetidor</li>
   <li class="todo"><span class="dash">–</span> Contato — máscaras + accordion FAQ</li>
   <li class="todo"><span class="dash">–</span> Cadastro de usuário — validação CNPJ</li>
-  <li class="todo"><span class="dash">–</span> Admin — uploader imagem categoria (duplicado)</li>
-  <li class="todo"><span class="dash">–</span> Admin — repetidor FAQ</li>
-  <li class="todo"><span class="dash">–</span> Admin — uploader slider</li>
-  <li class="todo"><span class="dash">–</span> Admin — uploader evento download</li>
-  <li class="todo"><span class="dash">–</span> Admin — uploader galeria</li>
-  <li class="todo"><span class="dash">–</span> Admin — tabela nutricional</li>
-  <li class="todo"><span class="dash">–</span> Admin CPT receita — repetidor ingredientes</li>
-  <li class="todo"><span class="dash">–</span> Admin CPT receita — outros campos</li>
-  <li class="todo"><span class="dash">–</span> Admin CPT produto — campos</li>
   <li class="todo"><span class="dash">–</span> Minha empresa — toggle + ViaCEP</li>
   <li class="todo"><span class="dash">–</span> Arquivo de produtos — filtros</li>
   <li class="todo"><span class="dash">–</span> Categoria — filtros</li>
-  <li class="todo"><span class="dash">–</span> Institucional</li>
-  <li class="todo"><span class="dash">–</span> Gerador tabela nutricional</li>
+  <li class="todo"><span class="dash">–</span> Institucional — Swiper</li>
+  <li class="todo"><span class="dash">–</span> Gerador tabela nutricional — accordion</li>
   <li class="todo"><span class="dash">–</span> Gerador tabela nutricional filial — ViaCEP</li>
   <li class="todo"><span class="dash">–</span> iFood contato — IBGE + CNPJ</li>
   <li class="todo"><span class="dash">–</span> Receitas sob medida — accordion</li>
   <li class="todo"><span class="dash">–</span> Single receita — iframe YT + Swiper + share</li>
   <li class="todo"><span class="dash">–</span> Arquivo receitas — accordion</li>
-  <li class="todo"><span class="dash">–</span> Blog Banners Gradina</li>
+  <li class="todo"><span class="dash">–</span> Blog Banners Gradina — JS dinâmico</li>
   <li class="todo"><span class="dash">–</span> Distributors Gradina</li>
-  <li class="todo"><span class="dash">–</span> Form Component</li>
+  <li class="todo"><span class="dash">–</span> Form Component — redirect</li>
   <li class="todo"><span class="dash">–</span> Single produto — Swiper + clickable card</li>
   <li class="todo"><span class="dash">–</span> iFood regras produtos — marquee</li>
   <li class="todo"><span class="dash">–</span> Receita detalhe — scripts</li>
+</ul>
+
+<h2>Event Handlers Inline — Frontend <span><span class="remaining">5 restantes</span></span></h2>
+<ul>
+  <li class="todo"><span class="dash">–</span> Minha empresa — onsubmit/onclick formulários (6 handlers)</li>
+  <li class="todo"><span class="dash">–</span> Arquivo eventos — onclick history.back</li>
+  <li class="todo"><span class="dash">–</span> Nav logado — onclick history.back</li>
+  <li class="todo"><span class="dash">–</span> Gradina — onclick carousel buttons (4 handlers)</li>
+  <li class="todo"><span class="dash">–</span> Form Component — onclick goStep + redirect (6 handlers)</li>
+</ul>
+
+<!-- ═══════ ADMIN / LOGIN (por último) ═══════ -->
+
+<hr class="separator">
+
+<h2 class="admin-header">Estilos CSS — Admin / Login <span><span class="remaining done-pill">1 executado</span> <span class="remaining postponed-pill">7 adiados</span></span></h2>
+<ul>
+  <li class="done"><span class="check">✓</span> Admin — meta box CTA iFood</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin — meta box Chefs</li>
+  <li class="postponed"><span class="clock">⏳</span> Login — customizações visuais</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin — meta box galeria</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin — importador (HTML standalone)</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin — meta box receita</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin — meta box produto</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin — menu</li>
+</ul>
+
+<h2 class="admin-header">Scripts JS — Admin / Login <span><span class="remaining postponed-pill">13 adiados</span></span></h2>
+<ul>
+  <li class="postponed"><span class="clock">⏳</span> Admin LP iFood — media uploader (3 variações)</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin LP iFood — repetidor</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin Chefs — campos + localize script</li>
+  <li class="postponed"><span class="clock">⏳</span> Login — customizações JS</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin — uploader imagem categoria</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin — repetidor FAQ</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin — uploader slider</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin — uploader evento download</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin — uploader galeria</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin — tabela nutricional</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin CPT receita — repetidores + select2</li>
+  <li class="postponed"><span class="clock">⏳</span> Admin CPT produto — campos + nutricional</li>
 </ul>
 
 </body>
