@@ -22,27 +22,54 @@
   .item-title { flex: 1; font-weight: 500; }
   .item-number { display: inline-block; background: #e5e7eb; color: #444; width: 24px; height: 24px; border-radius: 12px; text-align: center; line-height: 24px; font-size: 0.75rem; font-weight: 600; margin-right: 4px; flex-shrink: 0; }
   .item-desc { font-size: 0.8rem; color: #000; margin-top: 4px; margin-left: 29px; line-height: 1.4; font-weight: 600; }
+  .highlight-section { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px; border-radius: 6px; margin-bottom: 24px; }
+  .highlight-section h2 { border: none; margin-top: 0; color: #92400e; }
+  .in-progress-section { background: #dbeafe; border-left: 4px solid #3b82f6; padding: 16px; border-radius: 6px; margin-bottom: 24px; }
+  .in-progress-section h2 { border: none; margin-top: 0; color: #1e3a8a; }
+  li.highlight { background: #fef3c7 !important; color: #92400e !important; }
+  li.in-progress { background: #dbeafe !important; color: #1e3a8a !important; }
 </style>
 </head>
 <body>
 
 <h1>Remoção de Estilos e Scripts Inline</h1>
-<div class="counter">11 executados · 71 restantes</div>
+<div class="counter">11 concluídos · 1 em execução · 70 a fazer</div>
 <div class="progress"><div class="progress-bar" style="width: 13.41%"></div></div>
 
-<h2>✅ Concluído</h2>
-
-<h3>Estilos & Scripts — 11 itens</h3>
-<ul>
-  <li class="done">
+<div class="highlight-section">
+<h2>✨ Última Entrega</h2>
+<ul style="margin: 0;">
+  <li class="highlight">
     <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
       <span class="check">✓</span>
       <div style="flex: 1;">
-        <div style="display: flex; align-items: center;"><span class="item-number">1</span><div class="item-title">Login — customizações visuais</div></div>
+        <div style="display: flex; align-items: center;"><div class="item-title">Login — customizações visuais</div></div>
         <div class="item-desc">Extrai 196 linhas de estilos inline e 2 scripts da página de login. Criei login.css e login-customization.js enqueuando via login_enqueue_scripts, reduzindo 250+ linhas de código inline e melhorando CSP compliance.</div>
       </div>
     </div>
   </li>
+</ul>
+</div>
+
+<div class="in-progress-section">
+<h2>⚙️ Em Execução</h2>
+<ul style="margin: 0;">
+  <li class="in-progress">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span style="color: #3b82f6; font-size: 1rem; flex-shrink: 0; margin-top: 1px;">⟳</span>
+      <div style="flex: 1;">
+        <div style="display: flex; align-items: center;"><div class="item-title">Single material</div></div>
+        <div class="item-desc">Próximo item a ser processado: extração de estilos e scripts inline da página de detalhe de material.</div>
+      </div>
+    </div>
+  </li>
+</ul>
+</div>
+
+<h2>✅ Concluído</h2>
+
+<h3>Estilos & Scripts — 10 itens</h3>
+<ul>
   <li class="done">
     <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
       <span class="check">✓</span>
@@ -137,9 +164,8 @@
 
 <h2>⏳ A Fazer</h2>
 
-<h3>Estilos & Scripts — 71 itens</h3>
+<h3>Estilos & Scripts — 70 itens</h3>
 <ul>
-  <li class="todo"><span class="dash">–</span> Single material</li>
   <li class="todo"><span class="dash">–</span> Página de contato</li>
   <li class="todo"><span class="dash">–</span> Admin — meta box galeria</li>
   <li class="todo"><span class="dash">–</span> Admin — importador (HTML standalone)</li>
