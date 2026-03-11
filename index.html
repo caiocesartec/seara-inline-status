@@ -11,6 +11,7 @@
   .counter { font-size: 0.9rem; color: #666; margin-bottom: 24px; }
   h2 { font-size: 1rem; margin: 24px 0 8px; color: #555; border-bottom: 1px solid #eee; padding-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
   .remaining { font-size: 0.8rem; background: #f3f4f6; color: #888; border-radius: 10px; padding: 2px 10px; font-weight: normal; }
+  .done-pill { background: #bbf7d0; color: #166534; }
   ul { list-style: none; padding: 0; margin: 0; }
   li { padding: 5px 8px; border-radius: 4px; margin-bottom: 3px; font-size: 0.88rem; display: flex; align-items: center; gap: 8px; }
   li.done { background: #f0fdf4; color: #166534; }
@@ -25,7 +26,7 @@
 <div class="counter">9 executados · 73 restantes</div>
 <div class="progress"><div class="progress-bar" style="width: 10.97%"></div></div>
 
-<h2>Estilos CSS <span class="remaining">23 restantes</span></h2>
+<h2>Estilos CSS <span><span class="remaining done-pill">6 executados</span> <span class="remaining">23 restantes</span></span></h2>
 <ul>
   <li class="done"><span class="check">✓</span> LP iFood — cores de títulos e links</li>
   <li class="done"><span class="check">✓</span> LP iFood — animação marquee</li>
@@ -58,7 +59,7 @@
   <li class="todo"><span class="dash">–</span> Receita detalhe — impressão</li>
 </ul>
 
-<h2>Scripts JS <span class="remaining">34 restantes</span></h2>
+<h2>Scripts JS <span><span class="remaining done-pill">3 executados</span> <span class="remaining">34 restantes</span></span></h2>
 <ul>
   <li class="done"><span class="check">✓</span> Header — OneTrust wrapper</li>
   <li class="done"><span class="check">✓</span> Header Gourmet Gradina — remoção de script vazio</li>
