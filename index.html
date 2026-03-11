@@ -10,14 +10,17 @@
   .progress-bar { background: #22c55e; height: 14px; border-radius: 8px; transition: width .3s; }
   .counter { font-size: 0.9rem; color: #666; margin-bottom: 24px; }
   h2 { font-size: 1rem; margin: 24px 0 8px; color: #555; border-bottom: 1px solid #eee; padding-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
+  h3 { font-size: 0.9rem; margin: 16px 0 8px; color: #666; font-weight: 600; }
   .remaining { font-size: 0.8rem; background: #f3f4f6; color: #888; border-radius: 10px; padding: 2px 10px; font-weight: normal; }
   .done-pill { background: #bbf7d0; color: #166534; }
-  ul { list-style: none; padding: 0; margin: 0; }
-  li { padding: 5px 8px; border-radius: 4px; margin-bottom: 3px; font-size: 0.88rem; display: flex; align-items: center; gap: 8px; }
-  li.done { background: #f0fdf4; color: #166534; }
+  ul { list-style: none; padding: 0; margin: 0 0 20px 0; }
+  li { padding: 8px; border-radius: 4px; margin-bottom: 8px; font-size: 0.88rem; display: flex; align-items: flex-start; gap: 8px; }
+  li.done { background: #f0fdf4; color: #166534; flex-direction: column; }
   li.todo { background: #fafafa; color: #444; }
-  .check { color: #22c55e; font-size: 1rem; flex-shrink: 0; }
-  .dash { color: #ccc; font-size: 1rem; flex-shrink: 0; }
+  .check { color: #22c55e; font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+  .dash { color: #ccc; font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+  .item-title { flex: 1; font-weight: 500; }
+  .item-desc { font-size: 0.8rem; color: #555; margin-top: 4px; line-height: 1.4; font-weight: normal; }
 </style>
 </head>
 <body>
@@ -26,16 +29,115 @@
 <div class="counter">11 executados · 71 restantes</div>
 <div class="progress"><div class="progress-bar" style="width: 13.41%"></div></div>
 
-<h2>Estilos CSS <span><span class="remaining done-pill">8 executados</span> <span class="remaining">21 restantes</span></span></h2>
+<h2>✅ Concluído</h2>
+
+<h3>Estilos & Scripts — 11 itens</h3>
 <ul>
-  <li class="done"><span class="check">✓</span> LP iFood — cores de títulos e links</li>
-  <li class="done"><span class="check">✓</span> LP iFood — animação marquee</li>
-  <li class="done"><span class="check">✓</span> Produto detalhe — estilos de impressão</li>
-  <li class="done"><span class="check">✓</span> Galeria — scrollbar customizado</li>
-  <li class="done"><span class="check">✓</span> Header — menu logado e sub-menus</li>
-  <li class="done"><span class="check">✓</span> Admin — meta box CTA iFood</li>
-  <li class="done"><span class="check">✓</span> Admin — meta box Chefs</li>
-  <li class="done"><span class="check">✓</span> Login — customizações visuais</li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div class="item-title">LP iFood — cores de títulos e links</div>
+        <div class="item-desc">Removi os inline styles que customizavam cores de títulos (#FF5300) e links na landing page iFood. Migrei tudo para page-ifood.css com seletores específicos, melhorando manutenibilidade e permitindo ajustes centralizados.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div class="item-title">LP iFood — animação marquee</div>
+        <div class="item-desc">Extrai a animação CSS do marquee da página iFood que estava inline. Criei components/marquee.css com keyframes e implementei enqueue condicional, reduzindo complexidade do template e aumentando conformidade com CSP.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div class="item-title">Produto detalhe — estilos de impressão</div>
+        <div class="item-desc">Removi os estilos de impressão inline (@media print) do modal de produtos. Criei print-produto-detalhe.css e atualizei script JS para carregá-la dinamicamente, separando responsabilidades e melhorando segurança geral.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div class="item-title">Galeria — scrollbar customizado</div>
+        <div class="item-desc">Extrai a customização de scrollbar (#e8e4e4, ::-webkit-scrollbar) que estava inline. Migrei para utils/scrollbar.css com enqueue condicional, facilitando futura manutenção de temas visuais e consistência design.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div class="item-title">Header — menu logado e sub-menus</div>
+        <div class="item-desc">Removi estilos complexos de menu com dropdown e animações do header que estavam inline. Criei header.css global e enqueue nos principais hooks, consolidando toda customização visual do header em arquivo único.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div class="item-title">Admin — meta box CTA iFood</div>
+        <div class="item-desc">Extrai todos os estilos do painel meta box CTA iFood que estavam inline. Criei admin-cta-metabox.css e implementei enqueue via admin_enqueue_scripts, permitindo gestão visual centralizada e estilos consistentes.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div class="item-title">Admin — meta box Chefs</div>
+        <div class="item-desc">Removi estilos inline do admin e um style attribute do JavaScript do painel Chefs. Criei admin-chefs-metabox.css com classes para cards e preview, melhorando segurança e permitindo reutilização de estilos.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div class="item-title">Login — customizações visuais</div>
+        <div class="item-desc">Extrai 196 linhas de estilos inline e 2 scripts da página de login. Criei login.css e login-customization.js enqueuando via login_enqueue_scripts, reduzindo 250+ linhas de código inline e melhorando CSP compliance.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div class="item-title">Header — OneTrust wrapper</div>
+        <div class="item-desc">Removi o script inline do OneTrust wrapper do header que estava em PHP. Criei vendor/onetrust-wrapper.js enqueuando no head, mantendo funcionamento crítico de gerenciamento de cookies com melhor segurança.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div class="item-title">Header Gourmet Gradina — remoção de script vazio</div>
+        <div class="item-desc">Identifiquei e removi um &lt;script&gt; vazio do header Gourmet Gradina. Era código legado sem valor funcional, eliminando completamente requisição HTTP desnecessária e reduzindo peso da página.</div>
+      </div>
+    </div>
+  </li>
+  <li class="done">
+    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%;">
+      <span class="check">✓</span>
+      <div style="flex: 1;">
+        <div class="item-title">Header Gradina — remoção de script vazio</div>
+        <div class="item-desc">Identifiquei e removi script vazio replicado no header padrão Gradina. Era código remanescente não funcional, melhorando performance ao eliminar requisição vazia e reduzindo clutter do template.</div>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<h2>⏳ A Fazer</h2>
+
+<h3>Estilos & Scripts — 71 itens</h3>
+<ul>
   <li class="todo"><span class="dash">–</span> Single material</li>
   <li class="todo"><span class="dash">–</span> Página de contato</li>
   <li class="todo"><span class="dash">–</span> Admin — meta box galeria</li>
@@ -57,14 +159,6 @@
   <li class="todo"><span class="dash">–</span> Arquivo de materiais</li>
   <li class="todo"><span class="dash">–</span> iFood regras de produtos</li>
   <li class="todo"><span class="dash">–</span> Receita detalhe — impressão</li>
-</ul>
-
-<h2>Scripts JS <span><span class="remaining done-pill">4 executados</span> <span class="remaining">33 restantes</span></span></h2>
-<ul>
-  <li class="done"><span class="check">✓</span> Header — OneTrust wrapper</li>
-  <li class="done"><span class="check">✓</span> Header Gourmet Gradina — remoção de script vazio</li>
-  <li class="done"><span class="check">✓</span> Header Gradina — remoção de script vazio</li>
-  <li class="done"><span class="check">✓</span> Login — customizações (placeholder + nav)</li>
   <li class="todo"><span class="dash">–</span> LP iFood — marquee JS</li>
   <li class="todo"><span class="dash">–</span> Produto detalhe — script de impressão</li>
   <li class="todo"><span class="dash">–</span> Galeria — accordion + filtros</li>
