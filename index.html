@@ -9,16 +9,19 @@
   .progress { background: #eee; border-radius: 8px; height: 14px; margin-bottom: 24px; }
   .progress-bar { background: #22c55e; height: 14px; border-radius: 8px; transition: width .3s; }
   .counter { font-size: 0.9rem; color: #666; margin-bottom: 24px; }
-  h2 { font-size: 1rem; margin: 24px 0 8px; color: #555; border-bottom: 1px solid #eee; padding-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
+  h2 { font-size: 1.1rem; margin: 28px 0 10px; color: #555; border-bottom: 1px solid #eee; padding-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
   h2.admin-header { color: #999; }
-  .remaining { font-size: 0.8rem; background: #f3f4f6; color: #888; border-radius: 10px; padding: 2px 10px; font-weight: normal; }
-  .done-pill { background: #bbf7d0; color: #166534; }
-  .postponed-pill { background: #fef3c7; color: #92400e; }
+  .pill { font-size: 0.8rem; border-radius: 10px; padding: 2px 10px; font-weight: normal; }
+  .pill-done { background: #bbf7d0; color: #166534; }
+  .pill-todo { background: #f3f4f6; color: #888; }
+  .pill-postponed { background: #fef3c7; color: #92400e; }
   ul { list-style: none; padding: 0; margin: 0; }
-  li { padding: 5px 8px; border-radius: 4px; margin-bottom: 3px; font-size: 0.88rem; display: flex; align-items: center; gap: 8px; }
+  li { padding: 6px 10px; border-radius: 6px; margin-bottom: 4px; font-size: 0.88rem; }
   li.done { background: #f0fdf4; color: #166534; }
-  li.todo { background: #fafafa; color: #444; }
-  li.postponed { background: #fffbeb; color: #92400e; opacity: 0.7; }
+  li.todo { background: #fafafa; color: #444; display: flex; align-items: center; gap: 8px; }
+  li.postponed { background: #fffbeb; color: #92400e; opacity: 0.7; display: flex; align-items: center; gap: 8px; }
+  .done-title { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+  .done-feedback { display: block; margin-top: 4px; font-size: 0.82rem; color: #555; font-style: italic; line-height: 1.4; padding-left: 24px; }
   .check { color: #22c55e; font-size: 1rem; flex-shrink: 0; }
   .dash { color: #ccc; font-size: 1rem; flex-shrink: 0; }
   .clock { color: #d97706; font-size: 1rem; flex-shrink: 0; }
@@ -28,19 +31,59 @@
 <body>
 
 <h1>Remoção de Estilos e Scripts Inline</h1>
-<div class="counter">9 executados · 42 restantes (frontend) · 20 adiados (admin/login)</div>
-<div class="progress"><div class="progress-bar" style="width: 12.67%"></div></div>
+<div class="counter">10 resolvidos · 41 pendentes (frontend) · 20 adiados (admin/login)</div>
+<div class="progress"><div class="progress-bar" style="width: 14.08%"></div></div>
 
-<!-- ═══════ FRONTEND ═══════ -->
+<!-- ═══════ RESOLVIDOS ═══════ -->
 
-<h2>Estilos CSS — Frontend <span><span class="remaining done-pill">5 executados</span> <span class="remaining">16 restantes</span></span></h2>
+<h2>Resolvidos <span class="pill pill-done">10 itens</span></h2>
 <ul>
-  <li class="done"><span class="check">✓</span> LP iFood — cores de títulos e links</li>
-  <li class="done"><span class="check">✓</span> LP iFood — animação marquee</li>
-  <li class="done"><span class="check">✓</span> Produto detalhe — estilos de impressão</li>
-  <li class="done"><span class="check">✓</span> Galeria — scrollbar customizado</li>
-  <li class="done"><span class="check">✓</span> Header — menu logado e sub-menus</li>
-  <li class="todo"><span class="dash">–</span> Single material</li>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> LP iFood — cores de títulos e links</span>
+    <span class="done-feedback">Movi os estilos de cor dos títulos e links da LP iFood para page-ifood.css. As cores laranja dos headings e dos links de parceiro continuam iguais visualmente. O arquivo é carregado condicionalmente apenas no template page-ifood.php.</span>
+  </li>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> LP iFood — animação marquee</span>
+    <span class="done-feedback">Extraí a animação de rolagem infinita do marquee para components/marquee.css. O keyframe scroll-left e os estilos do wrapper agora vivem em arquivo externo, carregado só na LP iFood. Componente reutilizável para a página de regras também.</span>
+  </li>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> Produto detalhe — estilos de impressão</span>
+    <span class="done-feedback">Criei print-produto-detalhe.css com os estilos de tabela para impressão. O modal de impressão agora referencia o arquivo via tag link em vez de injetar CSS inline no document.write. Layout de impressão preservado sem alterações visuais.</span>
+  </li>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> Galeria — scrollbar customizado</span>
+    <span class="done-feedback">Movi o scrollbar laranja personalizado para utils/scrollbar.css, um utilitário compartilhado. Ele é carregado na página de galeria e será reaproveitado em outras seis páginas que usam o mesmo estilo de scrollbar com as cores da marca Seara.</span>
+  </li>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> Header — menu logado e sub-menus</span>
+    <span class="done-feedback">Transferi os estilos de visibilidade do menu logado e sub-menus para header.css, carregado globalmente. As transições de opacity e visibility no hover continuam funcionando. Inclui o media query para sub-menus em telas até 1024px.</span>
+  </li>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> Admin — meta box CTA iFood</span>
+    <span class="done-feedback">Extraí os estilos da meta box de Call to Action do iFood para admin-cta-metabox.css. O layout de tabela, inputs e textareas do painel admin continua idêntico. O arquivo é enfileirado via admin_enqueue_scripts em post.php e post-new.php.</span>
+  </li>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> Header — OneTrust wrapper</span>
+    <span class="done-feedback">Movi a função OptanonWrapper vazia exigida pelo OneTrust para vendor/onetrust-wrapper.js. O script é carregado no head via wp_enqueue_script em todas as páginas, garantindo que o callback esteja disponível quando o SDK do OneTrust inicializar.</span>
+  </li>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> Header Gourmet Gradina — remoção de script vazio</span>
+    <span class="done-feedback">Removi a tag script completamente vazia que existia no componente HeaderGourmetComponent.php do tema Gradina. Não havia nenhum código dentro dela, então a remoção não causa impacto funcional. Uma dependência inline a menos no carregamento.</span>
+  </li>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> Header Gradina — remoção de script vazio</span>
+    <span class="done-feedback">Removi a tag script vazia do HeaderComponent.php do tema Gradina, mesmo caso do header gourmet. Sem código dentro, sem impacto funcional. Com essa remoção, os dois headers do Gradina ficam livres de tags script desnecessárias no HTML.</span>
+  </li>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> Single material — estilos de headings e breadcrumb</span>
+    <span class="done-feedback">Criei single-material.css com os estilos de cor e tamanho dos headings e a ocultação de itens do breadcrumb. Todos os seletores foram escopados com .single-material para não vazar para outras páginas. Carregado via is_singular('material').</span>
+  </li>
+</ul>
+
+<!-- ═══════ PENDENTES ═══════ -->
+
+<h2>Pendentes <span class="pill pill-todo">41 itens</span></h2>
+<ul>
   <li class="todo"><span class="dash">–</span> Página de contato + select chevron</li>
   <li class="todo"><span class="dash">–</span> Arquivo de produtos</li>
   <li class="todo"><span class="dash">–</span> Categoria</li>
@@ -56,13 +99,6 @@
   <li class="todo"><span class="dash">–</span> Arquivo de materiais</li>
   <li class="todo"><span class="dash">–</span> iFood regras de produtos + marquee</li>
   <li class="todo"><span class="dash">–</span> Receita detalhe — impressão</li>
-</ul>
-
-<h2>Scripts JS — Frontend <span><span class="remaining done-pill">3 executados</span> <span class="remaining">21 restantes</span></span></h2>
-<ul>
-  <li class="done"><span class="check">✓</span> Header — OneTrust wrapper</li>
-  <li class="done"><span class="check">✓</span> Header Gourmet Gradina — remoção de script vazio</li>
-  <li class="done"><span class="check">✓</span> Header Gradina — remoção de script vazio</li>
   <li class="todo"><span class="dash">–</span> LP iFood — marquee JS</li>
   <li class="todo"><span class="dash">–</span> Produto detalhe — script de impressão</li>
   <li class="todo"><span class="dash">–</span> Galeria — accordion + filtros</li>
@@ -84,10 +120,6 @@
   <li class="todo"><span class="dash">–</span> Single produto — Swiper + clickable card</li>
   <li class="todo"><span class="dash">–</span> iFood regras produtos — marquee</li>
   <li class="todo"><span class="dash">–</span> Receita detalhe — scripts</li>
-</ul>
-
-<h2>Event Handlers Inline — Frontend <span><span class="remaining">5 restantes</span></span></h2>
-<ul>
   <li class="todo"><span class="dash">–</span> Minha empresa — onsubmit/onclick formulários (6 handlers)</li>
   <li class="todo"><span class="dash">–</span> Arquivo eventos — onclick history.back</li>
   <li class="todo"><span class="dash">–</span> Nav logado — onclick history.back</li>
@@ -99,9 +131,8 @@
 
 <hr class="separator">
 
-<h2 class="admin-header">Estilos CSS — Admin / Login <span><span class="remaining done-pill">1 executado</span> <span class="remaining postponed-pill">7 adiados</span></span></h2>
+<h2 class="admin-header">Adiados — Admin / Login <span class="pill pill-postponed">20 itens</span></h2>
 <ul>
-  <li class="done"><span class="check">✓</span> Admin — meta box CTA iFood</li>
   <li class="postponed"><span class="clock">⏳</span> Admin — meta box Chefs</li>
   <li class="postponed"><span class="clock">⏳</span> Login — customizações visuais</li>
   <li class="postponed"><span class="clock">⏳</span> Admin — meta box galeria</li>
@@ -109,10 +140,6 @@
   <li class="postponed"><span class="clock">⏳</span> Admin — meta box receita</li>
   <li class="postponed"><span class="clock">⏳</span> Admin — meta box produto</li>
   <li class="postponed"><span class="clock">⏳</span> Admin — menu</li>
-</ul>
-
-<h2 class="admin-header">Scripts JS — Admin / Login <span><span class="remaining postponed-pill">13 adiados</span></span></h2>
-<ul>
   <li class="postponed"><span class="clock">⏳</span> Admin LP iFood — media uploader (3 variações)</li>
   <li class="postponed"><span class="clock">⏳</span> Admin LP iFood — repetidor</li>
   <li class="postponed"><span class="clock">⏳</span> Admin Chefs — campos + localize script</li>
