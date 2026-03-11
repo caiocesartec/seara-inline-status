@@ -31,12 +31,12 @@
 <body>
 
 <h1>Remoção de Estilos e Scripts Inline</h1>
-<div class="counter">14 resolvidos · 37 pendentes (frontend) · 20 adiados (admin/login)</div>
-<div class="progress"><div class="progress-bar" style="width: 19.72%"></div></div>
+<div class="counter">15 resolvidos · 36 pendentes (frontend) · 20 adiados (admin/login)</div>
+<div class="progress"><div class="progress-bar" style="width: 21.13%"></div></div>
 
 <!-- ═══════ RESOLVIDOS ═══════ -->
 
-<h2>Resolvidos <span class="pill pill-done">14 itens</span></h2>
+<h2>Resolvidos <span class="pill pill-done">15 itens</span></h2>
 <ul>
   <li class="done">
     <span class="done-title"><span class="check">✓</span> LP iFood — cores de títulos e links</span>
@@ -94,13 +94,16 @@
     <span class="done-title"><span class="check">✓</span> Categoria — scrollbar customizado</span>
     <span class="done-feedback">Removi o bloco inline de category.php que tinha o scrollbar com estados extras de hover e active no track. Atualizei o utils/scrollbar.css para incluir esses estados, mantendo compatibilidade com todas as páginas que já usam o utilitário.</span>
   </li>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> Busca — media query responsivo</span>
+    <span class="done-feedback">Extraí o media query de font-size da página de busca para search.css. O seletor original era genérico (ul li p), então escopei com .search-results que o WordPress já adiciona automaticamente via body_class. Carregado via is_search().</span>
+  </li>
 </ul>
 
 <!-- ═══════ PENDENTES ═══════ -->
 
-<h2>Pendentes <span class="pill pill-todo">37 itens</span></h2>
+<h2>Pendentes <span class="pill pill-todo">36 itens</span></h2>
 <ul>
-  <li class="todo"><span class="dash">–</span> Busca</li>
   <li class="todo"><span class="dash">–</span> Institucional + swiper bullets</li>
   <li class="todo"><span class="dash">–</span> Gerador de tabela nutricional</li>
   <li class="todo"><span class="dash">–</span> Receitas sob medida</li>
