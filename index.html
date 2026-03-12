@@ -39,71 +39,71 @@
 <h2>Resolvidos <span class="pill pill-done">17 itens</span></h2>
 <ul>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> LP iFood — cores de títulos e links</span>
+    <span class="done-title"><span class="check">✓</span> 1. LP iFood — cores de títulos e links</span>
     <span class="done-feedback">Movi os estilos de cor dos títulos e links da LP iFood para page-ifood.css. As cores laranja dos headings e dos links de parceiro continuam iguais visualmente. O arquivo é carregado condicionalmente apenas no template page-ifood.php.</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> LP iFood — animação marquee</span>
+    <span class="done-title"><span class="check">✓</span> 2. LP iFood — animação marquee</span>
     <span class="done-feedback">Extraí a animação de rolagem infinita do marquee para components/marquee.css. O keyframe scroll-left e os estilos do wrapper agora vivem em arquivo externo, carregado só na LP iFood. Componente reutilizável para a página de regras também.</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> Produto detalhe — estilos de impressão</span>
+    <span class="done-title"><span class="check">✓</span> 3. Produto detalhe — estilos de impressão</span>
     <span class="done-feedback">Criei print-produto-detalhe.css com os estilos de tabela para impressão. O modal de impressão agora referencia o arquivo via tag link em vez de injetar CSS inline no document.write. Layout de impressão preservado sem alterações visuais.</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> Galeria — scrollbar customizado</span>
+    <span class="done-title"><span class="check">✓</span> 4. Galeria — scrollbar customizado</span>
     <span class="done-feedback">Movi o scrollbar laranja personalizado para utils/scrollbar.css, um utilitário compartilhado. Ele é carregado na página de galeria e será reaproveitado em outras seis páginas que usam o mesmo estilo de scrollbar com as cores da marca Seara.</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> Header — menu logado e sub-menus</span>
+    <span class="done-title"><span class="check">✓</span> 5. Header — menu logado e sub-menus</span>
     <span class="done-feedback">Transferi os estilos de visibilidade do menu logado e sub-menus para header.css, carregado globalmente. As transições de opacity e visibility no hover continuam funcionando. Inclui o media query para sub-menus em telas até 1024px.</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> Admin — meta box CTA iFood</span>
+    <span class="done-title"><span class="check">✓</span> 6. Admin — meta box CTA iFood</span>
     <span class="done-feedback">Extraí os estilos da meta box de Call to Action do iFood para admin-cta-metabox.css. O layout de tabela, inputs e textareas do painel admin continua idêntico. O arquivo é enfileirado via admin_enqueue_scripts em post.php e post-new.php.</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> Header — OneTrust wrapper</span>
+    <span class="done-title"><span class="check">✓</span> 7. Header — OneTrust wrapper</span>
     <span class="done-feedback">Movi a função OptanonWrapper vazia exigida pelo OneTrust para vendor/onetrust-wrapper.js. O script é carregado no head via wp_enqueue_script em todas as páginas, garantindo que o callback esteja disponível quando o SDK do OneTrust inicializar.</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> Header Gourmet Gradina — remoção de script vazio</span>
+    <span class="done-title"><span class="check">✓</span> 8. Header Gourmet Gradina — remoção de script vazio</span>
     <span class="done-feedback">Removi a tag script completamente vazia que existia no componente HeaderGourmetComponent.php do tema Gradina. Não havia nenhum código dentro dela, então a remoção não causa impacto funcional. Uma dependência inline a menos no carregamento.</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> Header Gradina — remoção de script vazio</span>
+    <span class="done-title"><span class="check">✓</span> 9. Header Gradina — remoção de script vazio</span>
     <span class="done-feedback">Removi a tag script vazia do HeaderComponent.php do tema Gradina, mesmo caso do header gourmet. Sem código dentro, sem impacto funcional. Com essa remoção, os dois headers do Gradina ficam livres de tags script desnecessárias no HTML.</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> Single material — estilos de headings e breadcrumb</span>
+    <span class="done-title"><span class="check">✓</span> 10. Single material — estilos de headings e breadcrumb</span>
     <span class="done-feedback">Criei single-material.css com os estilos de cor e tamanho dos headings e a ocultação de itens do breadcrumb. Todos os seletores foram escopados com .single-material para não vazar para outras páginas. Carregado via is_singular('material').</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> Página de contato — estilos de formulário e select chevron</span>
+    <span class="done-title"><span class="check">✓</span> 11. Página de contato — estilos de formulário e select chevron</span>
     <span class="done-feedback">Extraí os estilos do formulário de contato para page-contact.css, incluindo o select com chevron SVG animado, hover nos campos e posição dos erros. O CSS já era escopado por #contato_form, então não precisou de classe extra de isolamento.</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> iFood contato — estilos de formulário (compartilhado)</span>
+    <span class="done-title"><span class="check">✓</span> 12. iFood contato — estilos de formulário (compartilhado)</span>
     <span class="done-feedback">A página de contato do iFood usava CSS 100% idêntico ao da página de contato principal. Removi o bloco inline e reaproveito o mesmo page-contact.css, carregado condicionalmente para ambos os templates via is_page_template no Enqueue.php.</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> Arquivo de produtos — scrollbar e line-clamp</span>
+    <span class="done-title"><span class="check">✓</span> 13. Arquivo de produtos — scrollbar e line-clamp</span>
     <span class="done-feedback">Removi o bloco de estilos inline do archive-product.php. O scrollbar já existia em utils/scrollbar.css e agora é carregado também nesta página. Criei utils/typography.css com a classe .line-clamp-2, reutilizável em mais quatro páginas.</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> Categoria — scrollbar customizado</span>
+    <span class="done-title"><span class="check">✓</span> 14. Categoria — scrollbar customizado</span>
     <span class="done-feedback">Removi o bloco inline de category.php que tinha o scrollbar com estados extras de hover e active no track. Atualizei o utils/scrollbar.css para incluir esses estados, mantendo compatibilidade com todas as páginas que já usam o utilitário.</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> Busca — media query responsivo</span>
+    <span class="done-title"><span class="check">✓</span> 15. Busca — media query responsivo</span>
     <span class="done-feedback">Extraí o media query de font-size da página de busca para search.css. O seletor original era genérico (ul li p), então escopei com .search-results que o WordPress já adiciona automaticamente via body_class. Carregado via is_search().</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> Institucional — swiper bullets + slider</span>
+    <span class="done-title"><span class="check">✓</span> 16. Institucional — swiper bullets + slider</span>
     <span class="done-feedback">Criei utils/swiper-bullets.css com os estilos de paginação do Swiper, reutilizável na página de receita. Criei page-institucional.css com os estilos do slider de logos, escopados com .page-template-page-Institucional via body_class do WP.</span>
   </li>
   <li class="done">
-    <span class="done-title"><span class="check">✓</span> Gerador de tabela nutricional — scrollbar customizado</span>
+    <span class="done-title"><span class="check">✓</span> 17. Gerador de tabela nutricional — scrollbar customizado</span>
     <span class="done-feedback">Removi o bloco de estilos inline do scrollbar em page-generator-nutrition-tables.php. O utils/scrollbar.css já cobria todos os seletores (é um superset com estados :hover e :active extras). Adicionei o template à condição de carregamento no Enqueue.php.</span>
   </li>
 </ul>
