@@ -14,8 +14,7 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     max-width: 900px; margin: 0 auto;
-    padding: 20px 16px;
-    padding-top: calc(20px + env(safe-area-inset-top));
+    padding: 0 16px 20px;
     padding-bottom: calc(20px + env(safe-area-inset-bottom));
     padding-left: calc(16px + env(safe-area-inset-left));
     padding-right: calc(16px + env(safe-area-inset-right));
@@ -24,7 +23,7 @@
 
   /* ── Hero / Dashboard ── */
   .dashboard { margin-bottom: 24px; }
-  .app-header-spacer { height: 15px; background: #1a1a1a; }
+  .app-header-spacer { height: 0; padding-top: 15px; overflow: hidden; background: #1a1a1a; min-height: 15px; }
   .app-header {
     background: linear-gradient(135deg, #1e293b, #334155);
     color: #fff; text-align: center; text-transform: uppercase;
@@ -195,7 +194,7 @@
 
   /* ── Mobile ── */
   @media (max-width: 480px) {
-    body { padding: 12px 10px; }
+    body { padding: 0 10px 12px; }
     .app-header { margin: -12px -10px 16px; font-size: 0.75rem; letter-spacing: 1px; padding: 12px 10px; }
     .progress-highlight { padding: 14px 16px; margin: 16px 0; }
     .progress-text .value { font-size: 18px; }
@@ -216,7 +215,7 @@
     .done-feedback { font-size: 0.72rem; padding-left: 18px; }
   }
   @media (max-width: 360px) {
-    body { padding: 10px 8px; }
+    body { padding: 0 8px 10px; }
     .app-header { margin: -10px -8px 14px; font-size: 0.68rem; letter-spacing: 0.5px; padding: 10px 8px; }
     .progress-highlight { padding: 12px 14px; }
     .progress-text .value { font-size: 16px; }
@@ -243,7 +242,7 @@
 
 <!-- ═══════ DASHBOARD ═══════ -->
 <div class="app-header-spacer"></div>
-<div class="app-header">REMOÇÃO DE ESTILOS E SCRIPTS INLINE — v09</div>
+<div class="app-header">REMOÇÃO DE ESTILOS E SCRIPTS INLINE — v10</div>
 
 <div class="dashboard">
 
