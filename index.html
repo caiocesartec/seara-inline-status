@@ -90,6 +90,32 @@
   }
   @keyframes pulse-bar { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
 
+  /* Em Andamento section */
+  .em-andamento-section {
+    background: #1a1a1a; border-left: 4px solid #f59e0b;
+    padding: 16px 20px; margin: 20px 0; border-radius: 8px;
+    display: none;
+  }
+  .em-andamento-section.active {
+    display: block;
+  }
+  .em-andamento-text {
+    display: flex; flex-direction: row; gap: 12px; margin-bottom: 12px;
+    align-items: center; flex-wrap: wrap;
+  }
+  .em-andamento-text .label {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 1px;
+    color: #f59e0b; font-weight: 600;
+  }
+  .em-andamento-text .item {
+    font-size: 16px; font-weight: 600; color: #fff;
+  }
+  .em-andamento-text .spinner {
+    width: 16px; height: 16px;
+    border: 2px solid #fde68a; border-top-color: #f59e0b;
+    border-radius: 50%; animation: spin 0.8s linear infinite;
+  }
+
   /* In progress — hero card */
   .in-progress {
     background: linear-gradient(135deg, #fef9c3, #fef08a);
@@ -269,6 +295,14 @@
     </div>
     <div class="progress-bar-dark">
       <div class="progress-bar-fill" style="width: 46.5%;"></div>
+    </div>
+  </div>
+
+  <div class="em-andamento-section">
+    <div class="em-andamento-text">
+      <span class="spinner"></span>
+      <span class="label">Em Andamento</span>
+      <span class="item"></span>
     </div>
   </div>
 
