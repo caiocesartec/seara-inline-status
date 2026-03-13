@@ -271,11 +271,11 @@
 
   <div class="counters">
     <div class="counter-card card-done">
-      <div class="number">33</div>
+      <div class="number">34</div>
       <div class="label">Resolvidos</div>
     </div>
     <div class="counter-card card-pending">
-      <div class="number">18</div>
+      <div class="number">17</div>
       <div class="label">Pendentes</div>
     </div>
     <div class="counter-card card-postponed">
@@ -284,38 +284,42 @@
     </div>
   </div>
 
-  <div class="progress"><div class="progress-bar" style="width: 46.48%"></div></div>
+  <div class="progress"><div class="progress-bar" style="width: 47.89%"></div></div>
 
   <div class="progress-highlight">
     <div class="progress-text">
       <span class="label">Progresso Total</span>
-      <span class="value">33 de 71 itens</span>
-      <span class="percentage">(46.5%)</span>
+      <span class="value">34 de 71 itens</span>
+      <span class="percentage">(47.9%)</span>
     </div>
     <div class="progress-bar-dark">
-      <div class="progress-bar-fill" style="width: 46.5%;"></div>
+      <div class="progress-bar-fill" style="width: 47.9%;"></div>
     </div>
   </div>
 
   <div class="in-testing">
     <div class="in-testing-header"><span class="test-icon">🧪</span> Em testes</div>
-    <div class="in-testing-item">Minha empresa — toggle view/edit + ViaCEP</div>
+    <div class="in-testing-item">Arquivo de produtos — filtros</div>
   </div>
 
   <div class="current">
     <span class="current-label"><span class="next-icon">▶</span> Próximo:</span>
-    <span class="current-item">Arquivo de produtos — filtros</span>
+    <span class="current-item">Categoria — filtros</span>
   </div>
 </div>
 
 <!-- ═══════ RESOLVIDOS (accordion) ═══════ -->
 <details class="accordion">
   <summary class="accordion-trigger">
-    <span class="left">Resolvidos <span class="pill pill-done">33 itens</span></span>
+    <span class="left">Resolvidos <span class="pill pill-done">34 itens</span></span>
     <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
   </summary>
   <div class="accordion-content">
     <ul>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 33. Arquivo de produtos — filtros</span>
+        <span class="done-feedback">Criei assets/js/pages/archive-product.js com filtros de categoria, marca (single-select) e tipo de estabelecimento (multi-select), accordion dos filtros, badges de filtro ativo com remoção individual, sincronização de checkboxes via URL params e redirecionamento com query string. Removido jQuery CDN redundante e ~170 linhas de script inline.</span>
+      </li>
       <li class="done">
         <span class="done-title"><span class="check">&#10003;</span> 32. Minha empresa — toggle view/edit + ViaCEP</span>
         <span class="done-feedback">Criei assets/js/pages/page-my-business.js com toggle de visualização/edição de cards, ViaCEP auto-fill para matriz e filiais, máscaras jQuery (CNPJ, telefone, CEP), AJAX submit com nonce, atualização de cards, criação de nova filial dinâmica, e mensagens de feedback. Removido ~395 linhas de scripts inline do template e variáveis PHP não usadas.</span>
@@ -451,12 +455,11 @@
 <!-- ═══════ PENDENTES (accordion) ═══════ -->
 <details class="accordion">
   <summary class="accordion-trigger">
-    <span class="left">Pendentes <span class="pill pill-todo">18 itens</span></span>
+    <span class="left">Pendentes <span class="pill pill-todo">17 itens</span></span>
     <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
   </summary>
   <div class="accordion-content">
     <ul>
-      <li class="todo"><span class="dash">–</span> Arquivo de produtos — filtros</li>
       <li class="todo"><span class="dash">–</span> Categoria — filtros</li>
       <li class="todo"><span class="dash">–</span> Institucional — Swiper</li>
       <li class="todo"><span class="dash">–</span> Gerador tabela nutricional — accordion</li>
