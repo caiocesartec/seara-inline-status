@@ -23,7 +23,21 @@
 
   /* ── Hero / Dashboard ── */
   .dashboard { margin-bottom: 24px; }
-  .app-header-spacer { height: 0; padding-top: 15px; overflow: hidden; background: #1a1a1a; min-height: 15px; }
+  .app-header-spacer {
+    height: 0;
+    padding-top: 0;
+    overflow: hidden;
+    background: transparent;
+    min-height: 0;
+  }
+  /* Safari/WebKit only: faixa superior de 40px */
+  @supports (-webkit-touch-callout: none) {
+    .app-header-spacer {
+      padding-top: 40px;
+      min-height: 40px;
+      background: #1a1a1a;
+    }
+  }
   .app-header {
     background: linear-gradient(135deg, #1e293b, #334155);
     color: #fff; text-align: center; text-transform: uppercase;
@@ -242,7 +256,7 @@
 
 <!-- ═══════ DASHBOARD ═══════ -->
 <div class="app-header-spacer"></div>
-<div class="app-header">REMOÇÃO DE ESTILOS E SCRIPTS INLINE — v10</div>
+<div class="app-header">REMOÇÃO DE ESTILOS E SCRIPTS INLINE — v11</div>
 
 <div class="dashboard">
 
