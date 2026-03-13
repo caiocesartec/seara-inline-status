@@ -31,6 +31,11 @@
   .dash { color: #ccc; font-size: 1rem; flex-shrink: 0; }
   .clock { color: #d97706; font-size: 1rem; flex-shrink: 0; }
   .separator { margin: 32px 0 16px; border: none; border-top: 2px dashed #e5e7eb; }
+  .in-progress { background: #fefce8; border: 1px solid #fde68a; border-radius: 8px; padding: 14px 16px; margin-bottom: 24px; }
+  .in-progress-header { display: flex; align-items: center; gap: 8px; font-weight: 600; color: #92400e; font-size: 0.95rem; }
+  .in-progress-item { color: #78350f; font-size: 0.9rem; margin-top: 4px; padding-left: 28px; }
+  .spinner { display: inline-block; width: 16px; height: 16px; border: 2.5px solid #fde68a; border-top-color: #f59e0b; border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0; }
+  @keyframes spin { to { transform: rotate(360deg); } }
   @media (max-width: 480px) {
     html, body { overflow-x: hidden; }
     body { margin: 16px auto; padding: 0 12px; }
@@ -41,6 +46,9 @@
     .done-title { font-size: 0.8rem; }
     .done-feedback { font-size: 0.72rem; padding-left: 18px; }
     .current { padding: 10px 12px; font-size: 0.8rem; }
+    .in-progress { padding: 10px 12px; }
+    .in-progress-header { font-size: 0.85rem; }
+    .in-progress-item { font-size: 0.8rem; padding-left: 24px; }
     .pill { font-size: 0.72rem; padding: 2px 8px; }
   }
   @media (max-width: 360px) {
@@ -53,6 +61,9 @@
     .done-title { font-size: 0.76rem; }
     .done-feedback { font-size: 0.68rem; padding-left: 14px; }
     .current { padding: 8px 10px; font-size: 0.76rem; }
+    .in-progress { padding: 8px 10px; }
+    .in-progress-header { font-size: 0.8rem; }
+    .in-progress-item { font-size: 0.74rem; padding-left: 22px; }
     .check, .dash, .clock { font-size: 0.88rem; }
   }
 </style>
@@ -60,20 +71,35 @@
 <body>
 
 <h1>Remoção de Estilos e Scripts Inline</h1>
-<div class="counter">28 resolvidos · 23 pendentes (frontend) · 20 adiados (admin/login)</div>
-<div class="progress"><div class="progress-bar" style="width: 39.44%"></div></div>
+<div class="counter">30 resolvidos · 21 pendentes (frontend) · 20 adiados (admin/login)</div>
+<div class="progress"><div class="progress-bar" style="width: 42.25%"></div></div>
 
-<!-- ═══════ EM EXECUÇÃO ═══════ -->
+<!-- ═══════ EM ANDAMENTO ═══════ -->
+
+<div class="in-progress">
+  <div class="in-progress-header"><span class="spinner"></span> Em andamento</div>
+  <div class="in-progress-item">Cadastro de usuário — validação CNPJ, máscaras, ViaCEP e toggle senha</div>
+</div>
+
+<!-- ═══════ PRÓXIMO ═══════ -->
 
 <div class="current">
-  <span class="current-label">▶ Próximo item:</span>
-  <span class="current-item">A definir</span>
+  <span class="current-label">▶ Próximo:</span>
+  <span class="current-item">Minha empresa — toggle view/edit + ViaCEP</span>
 </div>
 
 <!-- ═══════ RESOLVIDOS ═══════ -->
 
-<h2>Resolvidos <span class="pill pill-done">28 itens</span></h2>
+<h2>Resolvidos <span class="pill pill-done">30 itens</span></h2>
 <ul>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> 30. Contato — scripts de máscaras, IBGE, accordion e validação</span>
+    <span class="done-feedback">Criei assets/js/pages/page-contact.js com máscaras jQuery (telefone/celular), busca IBGE de estados e cidades, accordion FAQ com toggle, validação de formulário e submit AJAX. Enfileirado com dependência jquery. Removido 382 linhas de script inline do template.</span>
+  </li>
+  <li class="done">
+    <span class="done-title"><span class="check">✓</span> 29. iFood contato — scripts de IBGE e validação CNPJ</span>
+    <span class="done-feedback">Reaproveitei page-contact.js para o template de contato iFood — mesma lógica de máscaras, IBGE e accordion. Scripts de validação CNPJ e submit AJAX já estavam compartilhados. Enfileirado condicionalmente para ambos os templates.</span>
+  </li>
   <li class="done">
     <span class="done-title"><span class="check">✓</span> 28. Galeria — accordion + filtros</span>
     <span class="done-feedback">Criei assets/js/pages/page-gallerys.js com accordion, filtros single-select (dispositivo e tipo_galeria), badges de filtro ativo, remoção de filtro individual, busca por taxonomia e marcação de filtros ativos via URL. Removido jQuery CDN redundante e 168 linhas de script inline. Enfileirado com dependência jquery-cdn.</span>
@@ -190,11 +216,8 @@
 
 <!-- ═══════ PENDENTES ═══════ -->
 
-<h2>Pendentes <span class="pill pill-todo">23 itens</span></h2>
+<h2>Pendentes <span class="pill pill-todo">21 itens</span></h2>
 <ul>
-  <li class="todo"><span class="dash">–</span> Galeria — accordion + filtros</li>
-  <li class="todo"><span class="dash">–</span> Contato — máscaras + accordion FAQ</li>
-  <li class="todo"><span class="dash">–</span> Cadastro de usuário — validação CNPJ</li>
   <li class="todo"><span class="dash">–</span> Minha empresa — toggle + ViaCEP</li>
   <li class="todo"><span class="dash">–</span> Arquivo de produtos — filtros</li>
   <li class="todo"><span class="dash">–</span> Categoria — filtros</li>
