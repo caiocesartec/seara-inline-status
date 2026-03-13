@@ -6,270 +6,404 @@
 <title>Remoção de Inline — Status</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; }
-  body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; overflow-wrap: break-word; }
-  h1 { font-size: 1.4rem; margin-bottom: 4px; }
-  .progress { background: #eee; border-radius: 8px; height: 14px; margin-bottom: 24px; }
-  .progress-bar { background: #22c55e; height: 14px; border-radius: 8px; transition: width .3s; }
-  .counter { font-size: 0.9rem; color: #666; margin-bottom: 24px; }
-  .current { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 12px 16px; margin-bottom: 24px; font-size: 0.9rem; }
-  .current-label { font-weight: 600; color: #1d4ed8; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 900px; margin: 0 auto; padding: 20px 16px; color: #333; overflow-wrap: break-word; }
+
+  /* ── Hero / Dashboard ── */
+  .dashboard { margin-bottom: 24px; }
+  h1 { font-size: 1.3rem; margin: 0 0 16px; }
+
+  /* Counters */
+  .counters { display: flex; gap: 6px; margin-bottom: 16px; width: 100%; }
+  .counter-card {
+    flex: 1 1 0; min-width: 0;
+    border-radius: 10px; padding: 12px 8px;
+    text-align: center; overflow: hidden;
+  }
+  .counter-card .number { font-size: 1.8rem; font-weight: 700; line-height: 1; }
+  .counter-card .label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.3px; margin-top: 4px; font-weight: 500; }
+  .card-done { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+  .card-pending { background: #fafafa; color: #555; border: 1px solid #e5e7eb; }
+  .card-postponed { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+
+  /* Progress bar */
+  .progress { background: #e5e7eb; border-radius: 99px; height: 10px; margin-bottom: 16px; overflow: hidden; }
+  .progress-bar { background: linear-gradient(90deg, #22c55e, #16a34a); height: 100%; border-radius: 99px; transition: width .4s ease; }
+  .progress-label { font-size: 0.75rem; color: #888; text-align: right; margin-bottom: 16px; }
+
+  /* In progress — hero card */
+  .in-progress {
+    background: linear-gradient(135deg, #fef9c3, #fef08a);
+    border: 2px solid #f59e0b; border-radius: 12px;
+    padding: 18px 18px; margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(245,158,11,.15);
+  }
+  .in-progress-header {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700; color: #92400e; font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .in-progress-item {
+    color: #78350f; font-size: 0.95rem; font-weight: 500;
+    padding-left: 32px; line-height: 1.4;
+  }
+  .in-progress-detail {
+    color: #a16207; font-size: 0.78rem; font-style: italic;
+    padding-left: 32px; margin-top: 4px; line-height: 1.3;
+  }
+  .spinner {
+    display: inline-block; width: 20px; height: 20px;
+    border: 3px solid #fde68a; border-top-color: #f59e0b;
+    border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* In testing — awaiting user validation */
+  .in-testing {
+    background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+    border: 2px solid #8b5cf6; border-radius: 12px;
+    padding: 18px 18px; margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(139,92,246,.15);
+  }
+  .in-testing-header {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700; color: #5b21b6; font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .in-testing-item {
+    color: #6d28d9; font-size: 0.95rem; font-weight: 500;
+    padding-left: 32px; line-height: 1.4;
+  }
+  .in-testing-detail {
+    color: #7c3aed; font-size: 0.78rem; font-style: italic;
+    padding-left: 32px; margin-top: 4px; line-height: 1.3;
+  }
+  .test-icon {
+    display: inline-block; width: 20px; height: 20px; flex-shrink: 0;
+    font-size: 1.1rem; line-height: 20px; text-align: center;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .6; transform: scale(1.15); } }
+
+  /* Next up */
+  .current {
+    background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px;
+    padding: 14px 16px; margin-bottom: 8px; font-size: 0.9rem;
+  }
+  .current-label { font-weight: 600; color: #1d4ed8; display: inline-flex; align-items: center; gap: 6px; }
   .current-item { color: #1e40af; }
-  h2 { font-size: 1.1rem; margin: 28px 0 10px; color: #555; border-bottom: 1px solid #eee; padding-bottom: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px; }
-  h2.admin-header { color: #999; }
-  .pill { font-size: 0.8rem; border-radius: 10px; padding: 2px 10px; font-weight: normal; white-space: nowrap; }
+  .next-icon {
+    display: inline-block; font-size: 1rem;
+    animation: bounce-right 1.2s ease-in-out infinite;
+  }
+  @keyframes bounce-right { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+
+  /* ── Accordion sections ── */
+  .accordion { border: 1px solid #e5e7eb; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+  .accordion-trigger {
+    width: 100%; background: #fafafa; border: none; cursor: pointer;
+    padding: 14px 16px; font-size: 0.95rem; font-weight: 600; color: #555;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 8px; text-align: left; font-family: inherit;
+    transition: background .2s;
+  }
+  .accordion-trigger:hover { background: #f3f4f6; }
+  .accordion-trigger .left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .accordion-chevron {
+    width: 20px; height: 20px; flex-shrink: 0;
+    transition: transform .25s ease;
+  }
+  .accordion[open] .accordion-chevron { transform: rotate(180deg); }
+  .accordion-content { padding: 0 16px 16px; }
+
+  .pill { font-size: 0.78rem; border-radius: 10px; padding: 2px 10px; font-weight: 500; white-space: nowrap; }
   .pill-done { background: #bbf7d0; color: #166534; }
-  .pill-todo { background: #f3f4f6; color: #888; }
-  .pill-postponed { background: #fef3c7; color: #92400e; }
+  .pill-todo { background: #e5e7eb; color: #666; }
+  .pill-postponed { background: #fde68a; color: #92400e; }
+
+  /* Lists */
   ul { list-style: none; padding: 0; margin: 0; }
-  li { padding: 6px 10px; border-radius: 6px; margin-bottom: 4px; font-size: 0.88rem; word-break: break-word; }
+  li { padding: 8px 10px; border-radius: 6px; margin-bottom: 3px; font-size: 0.85rem; word-break: break-word; }
   li.done { background: #f0fdf4; color: #166534; }
-  li.todo { background: #fafafa; color: #444; display: flex; align-items: center; gap: 8px; }
-  li.postponed { background: #fffbeb; color: #92400e; opacity: 0.7; display: flex; align-items: center; gap: 8px; }
+  li.todo { background: #fff; color: #444; display: flex; align-items: center; gap: 8px; }
+  li.postponed { background: #fffbeb; color: #92400e; opacity: 0.8; display: flex; align-items: center; gap: 8px; }
   .done-title { display: flex; align-items: center; gap: 8px; font-weight: 500; }
-  .done-feedback { display: block; margin-top: 4px; font-size: 0.82rem; color: #555; font-style: italic; line-height: 1.4; padding-left: 24px; }
+  .done-feedback { display: block; margin-top: 4px; font-size: 0.78rem; color: #555; font-style: italic; line-height: 1.4; padding-left: 24px; }
   .check { color: #22c55e; font-size: 1rem; flex-shrink: 0; }
   .dash { color: #ccc; font-size: 1rem; flex-shrink: 0; }
   .clock { color: #d97706; font-size: 1rem; flex-shrink: 0; }
-  .separator { margin: 32px 0 16px; border: none; border-top: 2px dashed #e5e7eb; }
-  .in-progress { background: #fefce8; border: 1px solid #fde68a; border-radius: 8px; padding: 14px 16px; margin-bottom: 24px; }
-  .in-progress-header { display: flex; align-items: center; gap: 8px; font-weight: 600; color: #92400e; font-size: 0.95rem; }
-  .in-progress-item { color: #78350f; font-size: 0.9rem; margin-top: 4px; padding-left: 28px; }
-  .spinner { display: inline-block; width: 16px; height: 16px; border: 2.5px solid #fde68a; border-top-color: #f59e0b; border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0; }
-  @keyframes spin { to { transform: rotate(360deg); } }
+  .separator { margin: 8px 0; border: none; }
+
+  /* ── Mobile ── */
   @media (max-width: 480px) {
-    html, body { overflow-x: hidden; }
-    body { margin: 16px auto; padding: 0 12px; }
-    h1 { font-size: 1.05rem; }
-    .counter { font-size: 0.78rem; }
-    h2 { font-size: 0.95rem; }
-    li { padding: 8px 6px; font-size: 0.8rem; }
-    .done-title { font-size: 0.8rem; }
+    body { padding: 12px 10px; }
+    h1 { font-size: 1.1rem; }
+    .counters { gap: 4px; }
+    .counter-card { padding: 10px 4px; }
+    .counter-card .number { font-size: 1.4rem; }
+    .counter-card .label { font-size: 0.6rem; letter-spacing: 0; }
+    .in-progress, .in-testing { padding: 14px 12px; }
+    .in-progress-header, .in-testing-header { font-size: 0.95rem; }
+    .in-progress-item, .in-testing-item { font-size: 0.85rem; padding-left: 28px; }
+    .in-progress-detail, .in-testing-detail { font-size: 0.72rem; padding-left: 28px; }
+    .current { padding: 10px 12px; font-size: 0.82rem; }
+    .accordion-trigger { padding: 12px 12px; font-size: 0.88rem; }
+    .accordion-content { padding: 0 10px 12px; }
+    .pill { font-size: 0.7rem; padding: 2px 8px; }
+    li { padding: 6px 8px; font-size: 0.8rem; }
     .done-feedback { font-size: 0.72rem; padding-left: 18px; }
-    .current { padding: 10px 12px; font-size: 0.8rem; }
-    .in-progress { padding: 10px 12px; }
-    .in-progress-header { font-size: 0.85rem; }
-    .in-progress-item { font-size: 0.8rem; padding-left: 24px; }
-    .pill { font-size: 0.72rem; padding: 2px 8px; }
   }
   @media (max-width: 360px) {
-    body { padding: 0 10px; }
-    h1 { font-size: 0.95rem; }
-    .counter { font-size: 0.72rem; }
-    h2 { font-size: 0.88rem; justify-content: flex-start; }
-    .pill { font-size: 0.68rem; padding: 1px 6px; }
-    li { padding: 6px 4px; font-size: 0.76rem; }
-    .done-title { font-size: 0.76rem; }
+    body { padding: 10px 8px; }
+    h1 { font-size: 1rem; }
+    .counter-card { padding: 8px 6px; min-width: 70px; }
+    .counter-card .number { font-size: 1.3rem; }
+    .counter-card .label { font-size: 0.6rem; }
+    .in-progress, .in-testing { padding: 12px 10px; }
+    .in-progress-header, .in-testing-header { font-size: 0.88rem; }
+    .in-progress-item, .in-testing-item { font-size: 0.78rem; padding-left: 26px; }
+    .in-progress-detail, .in-testing-detail { font-size: 0.68rem; padding-left: 26px; }
+    .current { font-size: 0.78rem; }
+    .accordion-trigger { padding: 10px 10px; font-size: 0.82rem; }
+    .pill { font-size: 0.65rem; padding: 1px 6px; }
+    li { font-size: 0.76rem; }
     .done-feedback { font-size: 0.68rem; padding-left: 14px; }
-    .current { padding: 8px 10px; font-size: 0.76rem; }
-    .in-progress { padding: 8px 10px; }
-    .in-progress-header { font-size: 0.8rem; }
-    .in-progress-item { font-size: 0.74rem; padding-left: 22px; }
-    .check, .dash, .clock { font-size: 0.88rem; }
   }
 </style>
 </head>
 <body>
 
-<h1>Remoção de Estilos e Scripts Inline</h1>
-<div class="counter">31 resolvidos · 20 pendentes (frontend) · 20 adiados (admin/login)</div>
-<div class="progress"><div class="progress-bar" style="width: 43.66%"></div></div>
+<!-- ═══════ DASHBOARD ═══════ -->
+<div class="dashboard">
+  <h1>Remoção de Estilos e Scripts Inline</h1>
 
-<!-- ═══════ EM ANDAMENTO ═══════ -->
+  <div class="counters">
+    <div class="counter-card card-done">
+      <div class="number">31</div>
+      <div class="label">Resolvidos</div>
+    </div>
+    <div class="counter-card card-pending">
+      <div class="number">20</div>
+      <div class="label">Pendentes</div>
+    </div>
+    <div class="counter-card card-postponed">
+      <div class="number">20</div>
+      <div class="label">Adiados</div>
+    </div>
+  </div>
 
-<div class="in-progress">
-  <div class="in-progress-header"><span class="spinner"></span> Em andamento</div>
-  <div class="in-progress-item">Minha empresa — toggle view/edit + ViaCEP</div>
+  <div class="progress"><div class="progress-bar" style="width: 43.66%"></div></div>
+  <div class="progress-label">31 de 71 itens (43.7%)</div>
+
+  <div class="in-testing">
+    <div class="in-testing-header"><span class="test-icon">🧪</span> Em testes</div>
+    <div class="in-testing-item">Cadastro de usuário — validação CNPJ, máscaras, ViaCEP e toggle senha</div>
+    <div class="in-testing-detail">Deploy na main realizado — aguardando validação em produção</div>
+  </div>
+
+  <div class="current">
+    <span class="current-label"><span class="next-icon">▶</span> Próximo:</span>
+    <span class="current-item">Minha empresa — toggle view/edit + ViaCEP</span>
+  </div>
 </div>
 
-<!-- ═══════ PRÓXIMO ═══════ -->
+<!-- ═══════ RESOLVIDOS (accordion) ═══════ -->
+<details class="accordion">
+  <summary class="accordion-trigger">
+    <span class="left">Resolvidos <span class="pill pill-done">31 itens</span></span>
+    <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+  </summary>
+  <div class="accordion-content">
+    <ul>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 31. Cadastro de usuário — validação CNPJ, máscaras, ViaCEP e toggle senha</span>
+        <span class="done-feedback">Criei assets/js/pages/page-user-register.js com máscaras jQuery (telefone, CEP, CNPJ), toggle senha, validação de dígitos CNPJ, consulta API CNPJ com auto-fill, ViaCEP, navegação multi-step e submit AJAX. Enfileirado com dependências jquery-cdn, jquery-mask e alerts-js. Removido ~415 linhas de script inline do template.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 30. Contato — scripts de máscaras, IBGE, accordion e validação</span>
+        <span class="done-feedback">Criei assets/js/pages/page-contact.js com máscaras jQuery (telefone/celular), busca IBGE de estados e cidades, accordion FAQ com toggle, validação de formulário e submit AJAX. Enfileirado com dependência jquery. Removido 382 linhas de script inline do template.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 29. iFood contato — scripts de IBGE e validação CNPJ</span>
+        <span class="done-feedback">Reaproveitei page-contact.js para o template de contato iFood — mesma lógica de máscaras, IBGE e accordion. Scripts de validação CNPJ e submit AJAX já estavam compartilhados. Enfileirado condicionalmente para ambos os templates.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 28. Galeria — accordion + filtros</span>
+        <span class="done-feedback">Criei assets/js/pages/page-gallerys.js com accordion, filtros single-select (dispositivo e tipo_galeria), badges de filtro ativo, remoção de filtro individual, busca por taxonomia e marcação de filtros ativos via URL. Removido jQuery CDN redundante e 168 linhas de script inline. Enfileirado com dependência jquery-cdn.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 27. Produto detalhe — script de impressão</span>
+        <span class="done-feedback">Criei assets/js/pages/template-produto-detalhe.js com o script de zoom (±3 níveis via transform scale) e impressão (clona conteúdo, abre janela com Tailwind + print CSS). Enfileirado via get_query_var('produto_detalhe_slug'). Troquei o PHP get_template_directory_uri() por caminho absoluto no JS.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 26. LP iFood — marquee JS</span>
+        <span class="done-feedback">Criei assets/js/pages/page-ifood.js com o script que preenche o marquee com 100 itens alternando IFOOD e SEARA. Enfileirado via wp_enqueue_script condicionalmente na LP iFood. Removido o bloco script inline do template.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 25. Receita detalhe — impressão</span>
+        <span class="done-feedback">Criei print-receita-detalhe.css com os estilos de tabela para impressão (bordas, padding, alternância de cores nas linhas, header com fundo cinza). Substituí o bloco style inline no document.write por uma tag link referenciando o novo arquivo.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 24. iFood regras de produtos — marquee</span>
+        <span class="done-feedback">Removi o bloco inline de marquee de page-ifood-regras-produtos.php. O CSS era 100% idêntico ao components/marquee.css já existente. Separei o enqueue do marquee do bloco da LP iFood para compartilhar entre os dois templates.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 23. Arquivo de materiais — line-clamp</span>
+        <span class="done-feedback">Removi o bloco inline com .line-clamp-2 de archive-material.php. O utilitário já existia em utils/typography.css. Adicionei is_post_type_archive('material') à condição de carregamento no Enqueue.php.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 22. Política de privacidade — headings, links e tabelas</span>
+        <span class="done-feedback">Criei page-privacy-policy.css com os estilos de cor laranja dos headings e links, bordas e arredondamento das tabelas e padding das células. Carregado condicionalmente via is_page_template('page-privacy-policy.php') no Enqueue.php.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 21. Arquivo de receitas — scrollbar e line-clamp</span>
+        <span class="done-feedback">Removi o bloco inline com scrollbar e .line-clamp-2 de archive-recipe.php. Mesmo padrão das páginas anteriores — ambos os utilitários já existiam. Adicionei is_post_type_archive('recipe') às condições de scrollbar e typography no Enqueue.php.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 20. Single receita — impressão</span>
+        <span class="done-feedback">Substituí o bloco style inline dentro do document.write da janela de impressão por uma tag link referenciando print-produto-detalhe.css, que já contém a regra @media print { body { margin: 0; } } e é compartilhado com a impressão de produto.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 19. Single receita — swiper bullets</span>
+        <span class="done-feedback">Removi o bloco inline de swiper bullets e .swiper-slide img de single-recipe.php. Os bullets já existiam em utils/swiper-bullets.css; adicionei .swiper-slide img ao utilitário. Separei o enqueue do swiper-bullets da institucional para compartilhar com is_singular('recipe').</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 18. Receitas sob medida — scrollbar e line-clamp</span>
+        <span class="done-feedback">Removi o bloco inline com scrollbar e .line-clamp-2 de page-recipes-made.php. Ambos os utilitários já existiam em utils/scrollbar.css e utils/typography.css. Adicionei o template às duas condições de carregamento no Enqueue.php.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 17. Gerador de tabela nutricional — scrollbar customizado</span>
+        <span class="done-feedback">Removi o bloco de estilos inline do scrollbar em page-generator-nutrition-tables.php. O utils/scrollbar.css já cobria todos os seletores (é um superset com estados :hover e :active extras). Adicionei o template à condição de carregamento no Enqueue.php.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 16. Institucional — swiper bullets + slider</span>
+        <span class="done-feedback">Criei utils/swiper-bullets.css com os estilos de paginação do Swiper, reutilizável na página de receita. Criei page-institucional.css com os estilos do slider de logos, escopados com .page-template-page-Institucional via body_class do WP.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 15. Busca — media query responsivo</span>
+        <span class="done-feedback">Extraí o media query de font-size da página de busca para search.css. O seletor original era genérico (ul li p), então escopei com .search-results que o WordPress já adiciona automaticamente via body_class. Carregado via is_search().</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 14. Categoria — scrollbar customizado</span>
+        <span class="done-feedback">Removi o bloco inline de category.php que tinha o scrollbar com estados extras de hover e active no track. Atualizei o utils/scrollbar.css para incluir esses estados, mantendo compatibilidade com todas as páginas que já usam o utilitário.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 13. Arquivo de produtos — scrollbar e line-clamp</span>
+        <span class="done-feedback">Removi o bloco de estilos inline do archive-product.php. O scrollbar já existia em utils/scrollbar.css e agora é carregado também nesta página. Criei utils/typography.css com a classe .line-clamp-2, reutilizável em mais quatro páginas.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 12. iFood contato — estilos de formulário (compartilhado)</span>
+        <span class="done-feedback">A página de contato do iFood usava CSS 100% idêntico ao da página de contato principal. Removi o bloco inline e reaproveito o mesmo page-contact.css, carregado condicionalmente para ambos os templates via is_page_template no Enqueue.php.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 11. Página de contato — estilos de formulário e select chevron</span>
+        <span class="done-feedback">Extraí os estilos do formulário de contato para page-contact.css, incluindo o select com chevron SVG animado, hover nos campos e posição dos erros. O CSS já era escopado por #contato_form, então não precisou de classe extra de isolamento.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 10. Single material — estilos de headings e breadcrumb</span>
+        <span class="done-feedback">Criei single-material.css com os estilos de cor e tamanho dos headings e a ocultação de itens do breadcrumb. Todos os seletores foram escopados com .single-material para não vazar para outras páginas. Carregado via is_singular('material').</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 9. Header Gradina — remoção de script vazio</span>
+        <span class="done-feedback">Removi a tag script vazia do HeaderComponent.php do tema Gradina, mesmo caso do header gourmet. Sem código dentro, sem impacto funcional. Com essa remoção, os dois headers do Gradina ficam livres de tags script desnecessárias no HTML.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 8. Header Gourmet Gradina — remoção de script vazio</span>
+        <span class="done-feedback">Removi a tag script completamente vazia que existia no componente HeaderGourmetComponent.php do tema Gradina. Não havia nenhum código dentro dela, então a remoção não causa impacto funcional. Uma dependência inline a menos no carregamento.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 7. Header — OneTrust wrapper</span>
+        <span class="done-feedback">Movi a função OptanonWrapper vazia exigida pelo OneTrust para vendor/onetrust-wrapper.js. O script é carregado no head via wp_enqueue_script em todas as páginas, garantindo que o callback esteja disponível quando o SDK do OneTrust inicializar.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 6. Admin — meta box CTA iFood</span>
+        <span class="done-feedback">Extraí os estilos da meta box de Call to Action do iFood para admin-cta-metabox.css. O layout de tabela, inputs e textareas do painel admin continua idêntico. O arquivo é enfileirado via admin_enqueue_scripts em post.php e post-new.php.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 5. Header — menu logado e sub-menus</span>
+        <span class="done-feedback">Transferi os estilos de visibilidade do menu logado e sub-menus para header.css, carregado globalmente. As transições de opacity e visibility no hover continuam funcionando. Inclui o media query para sub-menus em telas até 1024px.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 4. Galeria — scrollbar customizado</span>
+        <span class="done-feedback">Movi o scrollbar laranja personalizado para utils/scrollbar.css, um utilitário compartilhado. Ele é carregado na página de galeria e será reaproveitado em outras seis páginas que usam o mesmo estilo de scrollbar com as cores da marca Seara.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 3. Produto detalhe — estilos de impressão</span>
+        <span class="done-feedback">Criei print-produto-detalhe.css com os estilos de tabela para impressão. O modal de impressão agora referencia o arquivo via tag link em vez de injetar CSS inline no document.write. Layout de impressão preservado sem alterações visuais.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 2. LP iFood — animação marquee</span>
+        <span class="done-feedback">Extraí a animação de rolagem infinita do marquee para components/marquee.css. O keyframe scroll-left e os estilos do wrapper agora vivem em arquivo externo, carregado só na LP iFood. Componente reutilizável para a página de regras também.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 1. LP iFood — cores de títulos e links</span>
+        <span class="done-feedback">Movi os estilos de cor dos títulos e links da LP iFood para page-ifood.css. As cores laranja dos headings e dos links de parceiro continuam iguais visualmente. O arquivo é carregado condicionalmente apenas no template page-ifood.php.</span>
+      </li>
+    </ul>
+  </div>
+</details>
 
-<div class="current">
-  <span class="current-label">▶ Próximo:</span>
-  <span class="current-item">Arquivo de produtos — filtros</span>
-</div>
+<!-- ═══════ PENDENTES (accordion) ═══════ -->
+<details class="accordion">
+  <summary class="accordion-trigger">
+    <span class="left">Pendentes <span class="pill pill-todo">20 itens</span></span>
+    <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+  </summary>
+  <div class="accordion-content">
+    <ul>
+      <li class="todo"><span class="dash">–</span> Arquivo de produtos — filtros</li>
+      <li class="todo"><span class="dash">–</span> Categoria — filtros</li>
+      <li class="todo"><span class="dash">–</span> Institucional — Swiper</li>
+      <li class="todo"><span class="dash">–</span> Gerador tabela nutricional — accordion</li>
+      <li class="todo"><span class="dash">–</span> Gerador tabela nutricional filial — ViaCEP</li>
+      <li class="todo"><span class="dash">–</span> iFood contato — IBGE + CNPJ</li>
+      <li class="todo"><span class="dash">–</span> Receitas sob medida — accordion</li>
+      <li class="todo"><span class="dash">–</span> Single receita — iframe YT + Swiper + share</li>
+      <li class="todo"><span class="dash">–</span> Arquivo receitas — accordion</li>
+      <li class="todo"><span class="dash">–</span> Blog Banners Gradina — JS dinâmico</li>
+      <li class="todo"><span class="dash">–</span> Distributors Gradina</li>
+      <li class="todo"><span class="dash">–</span> Form Component — redirect</li>
+      <li class="todo"><span class="dash">–</span> Single produto — Swiper + clickable card</li>
+      <li class="todo"><span class="dash">–</span> iFood regras produtos — marquee</li>
+      <li class="todo"><span class="dash">–</span> Receita detalhe — scripts</li>
+      <li class="todo"><span class="dash">–</span> Minha empresa — onsubmit/onclick formulários (6 handlers)</li>
+      <li class="todo"><span class="dash">–</span> Arquivo eventos — onclick history.back</li>
+      <li class="todo"><span class="dash">–</span> Nav logado — onclick history.back</li>
+      <li class="todo"><span class="dash">–</span> Gradina — onclick carousel buttons (4 handlers)</li>
+      <li class="todo"><span class="dash">–</span> Form Component — onclick goStep + redirect (6 handlers)</li>
+    </ul>
+  </div>
+</details>
 
-<!-- ═══════ RESOLVIDOS ═══════ -->
-
-<h2>Resolvidos <span class="pill pill-done">31 itens</span></h2>
-<ul>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 31. Cadastro de usuário — validação CNPJ, máscaras, ViaCEP e toggle senha</span>
-    <span class="done-feedback">Criei assets/js/pages/page-user-register.js com máscaras jQuery (telefone, CEP, CNPJ), toggle senha, validação de dígitos CNPJ, consulta API CNPJ com auto-fill, ViaCEP, navegação multi-step e submit AJAX. Enfileirado com dependências jquery-cdn, jquery-mask e alerts-js. Removido ~415 linhas de script inline do template.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 30. Contato — scripts de máscaras, IBGE, accordion e validação</span>
-    <span class="done-feedback">Criei assets/js/pages/page-contact.js com máscaras jQuery (telefone/celular), busca IBGE de estados e cidades, accordion FAQ com toggle, validação de formulário e submit AJAX. Enfileirado com dependência jquery. Removido 382 linhas de script inline do template.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 29. iFood contato — scripts de IBGE e validação CNPJ</span>
-    <span class="done-feedback">Reaproveitei page-contact.js para o template de contato iFood — mesma lógica de máscaras, IBGE e accordion. Scripts de validação CNPJ e submit AJAX já estavam compartilhados. Enfileirado condicionalmente para ambos os templates.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 28. Galeria — accordion + filtros</span>
-    <span class="done-feedback">Criei assets/js/pages/page-gallerys.js com accordion, filtros single-select (dispositivo e tipo_galeria), badges de filtro ativo, remoção de filtro individual, busca por taxonomia e marcação de filtros ativos via URL. Removido jQuery CDN redundante e 168 linhas de script inline. Enfileirado com dependência jquery-cdn.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 27. Produto detalhe — script de impressão</span>
-    <span class="done-feedback">Criei assets/js/pages/template-produto-detalhe.js com o script de zoom (±3 níveis via transform scale) e impressão (clona conteúdo, abre janela com Tailwind + print CSS). Enfileirado via get_query_var('produto_detalhe_slug'). Troquei o PHP get_template_directory_uri() por caminho absoluto no JS.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 26. LP iFood — marquee JS</span>
-    <span class="done-feedback">Criei assets/js/pages/page-ifood.js com o script que preenche o marquee com 100 itens alternando IFOOD e SEARA. Enfileirado via wp_enqueue_script condicionalmente na LP iFood. Removido o bloco script inline do template.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 25. Receita detalhe — impressão</span>
-    <span class="done-feedback">Criei print-receita-detalhe.css com os estilos de tabela para impressão (bordas, padding, alternância de cores nas linhas, header com fundo cinza). Substituí o bloco style inline no document.write por uma tag link referenciando o novo arquivo.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 24. iFood regras de produtos — marquee</span>
-    <span class="done-feedback">Removi o bloco inline de marquee de page-ifood-regras-produtos.php. O CSS era 100% idêntico ao components/marquee.css já existente. Separei o enqueue do marquee do bloco da LP iFood para compartilhar entre os dois templates.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 23. Arquivo de materiais — line-clamp</span>
-    <span class="done-feedback">Removi o bloco inline com .line-clamp-2 de archive-material.php. O utilitário já existia em utils/typography.css. Adicionei is_post_type_archive('material') à condição de carregamento no Enqueue.php.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 22. Política de privacidade — headings, links e tabelas</span>
-    <span class="done-feedback">Criei page-privacy-policy.css com os estilos de cor laranja dos headings e links, bordas e arredondamento das tabelas e padding das células. Carregado condicionalmente via is_page_template('page-privacy-policy.php') no Enqueue.php.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 21. Arquivo de receitas — scrollbar e line-clamp</span>
-    <span class="done-feedback">Removi o bloco inline com scrollbar e .line-clamp-2 de archive-recipe.php. Mesmo padrão das páginas anteriores — ambos os utilitários já existiam. Adicionei is_post_type_archive('recipe') às condições de scrollbar e typography no Enqueue.php.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 20. Single receita — impressão</span>
-    <span class="done-feedback">Substituí o bloco style inline dentro do document.write da janela de impressão por uma tag link referenciando print-produto-detalhe.css, que já contém a regra @media print { body { margin: 0; } } e é compartilhado com a impressão de produto.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 19. Single receita — swiper bullets</span>
-    <span class="done-feedback">Removi o bloco inline de swiper bullets e .swiper-slide img de single-recipe.php. Os bullets já existiam em utils/swiper-bullets.css; adicionei .swiper-slide img ao utilitário. Separei o enqueue do swiper-bullets da institucional para compartilhar com is_singular('recipe').</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 18. Receitas sob medida — scrollbar e line-clamp</span>
-    <span class="done-feedback">Removi o bloco inline com scrollbar e .line-clamp-2 de page-recipes-made.php. Ambos os utilitários já existiam em utils/scrollbar.css e utils/typography.css. Adicionei o template às duas condições de carregamento no Enqueue.php.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 17. Gerador de tabela nutricional — scrollbar customizado</span>
-    <span class="done-feedback">Removi o bloco de estilos inline do scrollbar em page-generator-nutrition-tables.php. O utils/scrollbar.css já cobria todos os seletores (é um superset com estados :hover e :active extras). Adicionei o template à condição de carregamento no Enqueue.php.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 16. Institucional — swiper bullets + slider</span>
-    <span class="done-feedback">Criei utils/swiper-bullets.css com os estilos de paginação do Swiper, reutilizável na página de receita. Criei page-institucional.css com os estilos do slider de logos, escopados com .page-template-page-Institucional via body_class do WP.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 15. Busca — media query responsivo</span>
-    <span class="done-feedback">Extraí o media query de font-size da página de busca para search.css. O seletor original era genérico (ul li p), então escopei com .search-results que o WordPress já adiciona automaticamente via body_class. Carregado via is_search().</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 14. Categoria — scrollbar customizado</span>
-    <span class="done-feedback">Removi o bloco inline de category.php que tinha o scrollbar com estados extras de hover e active no track. Atualizei o utils/scrollbar.css para incluir esses estados, mantendo compatibilidade com todas as páginas que já usam o utilitário.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 13. Arquivo de produtos — scrollbar e line-clamp</span>
-    <span class="done-feedback">Removi o bloco de estilos inline do archive-product.php. O scrollbar já existia em utils/scrollbar.css e agora é carregado também nesta página. Criei utils/typography.css com a classe .line-clamp-2, reutilizável em mais quatro páginas.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 12. iFood contato — estilos de formulário (compartilhado)</span>
-    <span class="done-feedback">A página de contato do iFood usava CSS 100% idêntico ao da página de contato principal. Removi o bloco inline e reaproveito o mesmo page-contact.css, carregado condicionalmente para ambos os templates via is_page_template no Enqueue.php.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 11. Página de contato — estilos de formulário e select chevron</span>
-    <span class="done-feedback">Extraí os estilos do formulário de contato para page-contact.css, incluindo o select com chevron SVG animado, hover nos campos e posição dos erros. O CSS já era escopado por #contato_form, então não precisou de classe extra de isolamento.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 10. Single material — estilos de headings e breadcrumb</span>
-    <span class="done-feedback">Criei single-material.css com os estilos de cor e tamanho dos headings e a ocultação de itens do breadcrumb. Todos os seletores foram escopados com .single-material para não vazar para outras páginas. Carregado via is_singular('material').</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 9. Header Gradina — remoção de script vazio</span>
-    <span class="done-feedback">Removi a tag script vazia do HeaderComponent.php do tema Gradina, mesmo caso do header gourmet. Sem código dentro, sem impacto funcional. Com essa remoção, os dois headers do Gradina ficam livres de tags script desnecessárias no HTML.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 8. Header Gourmet Gradina — remoção de script vazio</span>
-    <span class="done-feedback">Removi a tag script completamente vazia que existia no componente HeaderGourmetComponent.php do tema Gradina. Não havia nenhum código dentro dela, então a remoção não causa impacto funcional. Uma dependência inline a menos no carregamento.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 7. Header — OneTrust wrapper</span>
-    <span class="done-feedback">Movi a função OptanonWrapper vazia exigida pelo OneTrust para vendor/onetrust-wrapper.js. O script é carregado no head via wp_enqueue_script em todas as páginas, garantindo que o callback esteja disponível quando o SDK do OneTrust inicializar.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 6. Admin — meta box CTA iFood</span>
-    <span class="done-feedback">Extraí os estilos da meta box de Call to Action do iFood para admin-cta-metabox.css. O layout de tabela, inputs e textareas do painel admin continua idêntico. O arquivo é enfileirado via admin_enqueue_scripts em post.php e post-new.php.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 5. Header — menu logado e sub-menus</span>
-    <span class="done-feedback">Transferi os estilos de visibilidade do menu logado e sub-menus para header.css, carregado globalmente. As transições de opacity e visibility no hover continuam funcionando. Inclui o media query para sub-menus em telas até 1024px.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 4. Galeria — scrollbar customizado</span>
-    <span class="done-feedback">Movi o scrollbar laranja personalizado para utils/scrollbar.css, um utilitário compartilhado. Ele é carregado na página de galeria e será reaproveitado em outras seis páginas que usam o mesmo estilo de scrollbar com as cores da marca Seara.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 3. Produto detalhe — estilos de impressão</span>
-    <span class="done-feedback">Criei print-produto-detalhe.css com os estilos de tabela para impressão. O modal de impressão agora referencia o arquivo via tag link em vez de injetar CSS inline no document.write. Layout de impressão preservado sem alterações visuais.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 2. LP iFood — animação marquee</span>
-    <span class="done-feedback">Extraí a animação de rolagem infinita do marquee para components/marquee.css. O keyframe scroll-left e os estilos do wrapper agora vivem em arquivo externo, carregado só na LP iFood. Componente reutilizável para a página de regras também.</span>
-  </li>
-  <li class="done">
-    <span class="done-title"><span class="check">✓</span> 1. LP iFood — cores de títulos e links</span>
-    <span class="done-feedback">Movi os estilos de cor dos títulos e links da LP iFood para page-ifood.css. As cores laranja dos headings e dos links de parceiro continuam iguais visualmente. O arquivo é carregado condicionalmente apenas no template page-ifood.php.</span>
-  </li>
-</ul>
-
-<!-- ═══════ PENDENTES ═══════ -->
-
-<h2>Pendentes <span class="pill pill-todo">20 itens</span></h2>
-<ul>
-  <li class="todo"><span class="dash">–</span> Arquivo de produtos — filtros</li>
-  <li class="todo"><span class="dash">–</span> Categoria — filtros</li>
-  <li class="todo"><span class="dash">–</span> Institucional — Swiper</li>
-  <li class="todo"><span class="dash">–</span> Gerador tabela nutricional — accordion</li>
-  <li class="todo"><span class="dash">–</span> Gerador tabela nutricional filial — ViaCEP</li>
-  <li class="todo"><span class="dash">–</span> iFood contato — IBGE + CNPJ</li>
-  <li class="todo"><span class="dash">–</span> Receitas sob medida — accordion</li>
-  <li class="todo"><span class="dash">–</span> Single receita — iframe YT + Swiper + share</li>
-  <li class="todo"><span class="dash">–</span> Arquivo receitas — accordion</li>
-  <li class="todo"><span class="dash">–</span> Blog Banners Gradina — JS dinâmico</li>
-  <li class="todo"><span class="dash">–</span> Distributors Gradina</li>
-  <li class="todo"><span class="dash">–</span> Form Component — redirect</li>
-  <li class="todo"><span class="dash">–</span> Single produto — Swiper + clickable card</li>
-  <li class="todo"><span class="dash">–</span> iFood regras produtos — marquee</li>
-  <li class="todo"><span class="dash">–</span> Receita detalhe — scripts</li>
-  <li class="todo"><span class="dash">–</span> Minha empresa — onsubmit/onclick formulários (6 handlers)</li>
-  <li class="todo"><span class="dash">–</span> Arquivo eventos — onclick history.back</li>
-  <li class="todo"><span class="dash">–</span> Nav logado — onclick history.back</li>
-  <li class="todo"><span class="dash">–</span> Gradina — onclick carousel buttons (4 handlers)</li>
-  <li class="todo"><span class="dash">–</span> Form Component — onclick goStep + redirect (6 handlers)</li>
-</ul>
-
-<!-- ═══════ ADMIN / LOGIN (por último) ═══════ -->
-
-<hr class="separator">
-
-<h2 class="admin-header">Adiados — Admin / Login <span class="pill pill-postponed">20 itens</span></h2>
-<ul>
-  <li class="postponed"><span class="clock">⏳</span> Admin — meta box Chefs</li>
-  <li class="postponed"><span class="clock">⏳</span> Login — customizações visuais</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin — meta box galeria</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin — importador (HTML standalone)</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin — meta box receita</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin — meta box produto</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin — menu</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin LP iFood — media uploader (3 variações)</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin LP iFood — repetidor</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin Chefs — campos + localize script</li>
-  <li class="postponed"><span class="clock">⏳</span> Login — customizações JS</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin — uploader imagem categoria</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin — repetidor FAQ</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin — uploader slider</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin — uploader evento download</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin — uploader galeria</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin — tabela nutricional</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin CPT receita — repetidores + select2</li>
-  <li class="postponed"><span class="clock">⏳</span> Admin CPT produto — campos + nutricional</li>
-</ul>
+<!-- ═══════ ADMIN / LOGIN (accordion) ═══════ -->
+<details class="accordion">
+  <summary class="accordion-trigger" style="color: #999;">
+    <span class="left">Adiados — Admin / Login <span class="pill pill-postponed">20 itens</span></span>
+    <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+  </summary>
+  <div class="accordion-content">
+    <ul>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin — meta box Chefs</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Login — customizações visuais</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin — meta box galeria</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin — importador (HTML standalone)</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin — meta box receita</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin — meta box produto</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin — menu</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin LP iFood — media uploader (3 variações)</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin LP iFood — repetidor</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin Chefs — campos + localize script</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Login — customizações JS</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin — uploader imagem categoria</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin — repetidor FAQ</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin — uploader slider</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin — uploader evento download</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin — uploader galeria</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin — tabela nutricional</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin CPT receita — repetidores + select2</li>
+      <li class="postponed"><span class="clock">&#9203;</span> Admin CPT produto — campos + nutricional</li>
+    </ul>
+  </div>
+</details>
 
 </body>
 </html>
