@@ -51,7 +51,43 @@
   /* Progress bar */
   .progress { background: #e5e7eb; border-radius: 99px; height: 10px; margin-bottom: 16px; overflow: hidden; }
   .progress-bar { background: linear-gradient(90deg, #22c55e, #16a34a); height: 100%; border-radius: 99px; transition: width .4s ease; }
-  .progress-label { font-size: 0.75rem; color: #888; text-align: right; margin-bottom: 16px; }
+  .progress-label {
+    font-size: 0.72rem; color: #fff; text-align: center;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+    padding: 6px 12px; border-radius: 99px; margin: -6px auto 16px;
+    display: inline-block;
+  }
+  .progress-wrap { text-align: center; margin-bottom: 16px; }
+
+  /* Progress highlight */
+  .progress-highlight {
+    background: #1a1a1a; border-left: 4px solid #ff9500;
+    padding: 16px 20px; margin: 20px 0; border-radius: 8px;
+  }
+  .progress-text {
+    display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px;
+  }
+  .progress-text .label {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 1px;
+    color: #ff9500; font-weight: 600;
+  }
+  .progress-text .value {
+    font-size: 20px; font-weight: 700; color: #fff;
+  }
+  .progress-text .percentage {
+    font-size: 14px; color: #aaa;
+  }
+  .progress-bar-dark {
+    width: 100%; height: 8px; background: #333;
+    border-radius: 4px; overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%; background: linear-gradient(90deg, #ff9500, #ffb84d);
+    border-radius: 4px; transition: width 0.4s ease;
+    animation: pulse-bar 3s ease-in-out infinite;
+  }
+  @keyframes pulse-bar { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
 
   /* In progress — hero card */
   .in-progress {
@@ -160,6 +196,9 @@
   @media (max-width: 480px) {
     body { padding: 12px 10px; }
     .app-header { margin: -12px -10px 16px; font-size: 0.75rem; letter-spacing: 1px; padding: 12px 10px; }
+    .progress-highlight { padding: 14px 16px; margin: 16px 0; }
+    .progress-text .value { font-size: 18px; }
+    .progress-text .percentage { font-size: 12px; }
     .counters { gap: 4px; }
     .counter-card { padding: 10px 4px; }
     .counter-card .number { font-size: 1.4rem; }
@@ -178,6 +217,10 @@
   @media (max-width: 360px) {
     body { padding: 10px 8px; }
     .app-header { margin: -10px -8px 14px; font-size: 0.68rem; letter-spacing: 0.5px; padding: 10px 8px; }
+    .progress-highlight { padding: 12px 14px; }
+    .progress-text .value { font-size: 16px; }
+    .progress-text .label { font-size: 11px; }
+    .progress-text .percentage { font-size: 11px; }
     .counter-card { padding: 8px 6px; min-width: 70px; }
     .counter-card .number { font-size: 1.3rem; }
     .counter-card .label { font-size: 0.6rem; }
@@ -216,7 +259,17 @@
   </div>
 
   <div class="progress"><div class="progress-bar" style="width: 43.66%"></div></div>
-  <div class="progress-label">31 de 71 itens (43.7%)</div>
+
+  <div class="progress-highlight">
+    <div class="progress-text">
+      <span class="label">Progresso Total</span>
+      <span class="value">31 de 71 itens</span>
+      <span class="percentage">(43.7%)</span>
+    </div>
+    <div class="progress-bar-dark">
+      <div class="progress-bar-fill" style="width: 43.7%;"></div>
+    </div>
+  </div>
 
   <div class="in-testing">
     <div class="in-testing-header"><span class="test-icon">🧪</span> Em testes</div>
