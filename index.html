@@ -24,7 +24,16 @@
 
   /* ── Hero / Dashboard ── */
   .dashboard { margin-bottom: 24px; }
-  h1 { font-size: 1.3rem; margin: 0 0 16px; }
+  .app-header {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: #fff; text-align: center; text-transform: uppercase;
+    letter-spacing: 1.5px; font-size: 0.85rem; font-weight: 700;
+    padding: 14px 16px; margin: -20px -16px 20px;
+    margin-top: calc(-20px - env(safe-area-inset-top));
+    padding-top: calc(14px + env(safe-area-inset-top));
+    border-bottom: 3px solid #f59e0b;
+  }
+  h1 { font-size: 1.3rem; margin: 0 0 16px; display: none; }
 
   /* Counters */
   .counters { display: flex; gap: 6px; margin-bottom: 16px; width: 100%; }
@@ -150,7 +159,7 @@
   /* ── Mobile ── */
   @media (max-width: 480px) {
     body { padding: 12px 10px; }
-    h1 { font-size: 1.1rem; }
+    .app-header { margin: -12px -10px 16px; font-size: 0.75rem; letter-spacing: 1px; padding: 12px 10px; }
     .counters { gap: 4px; }
     .counter-card { padding: 10px 4px; }
     .counter-card .number { font-size: 1.4rem; }
@@ -168,7 +177,7 @@
   }
   @media (max-width: 360px) {
     body { padding: 10px 8px; }
-    h1 { font-size: 1rem; }
+    .app-header { margin: -10px -8px 14px; font-size: 0.68rem; letter-spacing: 0.5px; padding: 10px 8px; }
     .counter-card { padding: 8px 6px; min-width: 70px; }
     .counter-card .number { font-size: 1.3rem; }
     .counter-card .label { font-size: 0.6rem; }
@@ -187,8 +196,9 @@
 <body>
 
 <!-- ═══════ DASHBOARD ═══════ -->
+<div class="app-header">REMOÇÃO DE ESTILOS E SCRIPTS INLINE</div>
+
 <div class="dashboard">
-  <h1>Remoção de Estilos e Scripts Inline</h1>
 
   <div class="counters">
     <div class="counter-card card-done">
