@@ -29,10 +29,15 @@
     background: linear-gradient(135deg, #1e293b, #334155);
     color: #fff; text-align: center; text-transform: uppercase;
     letter-spacing: 1.5px; font-size: 0.85rem; font-weight: 700;
-    padding: 14px 16px; margin: 7px -16px 20px;
+    padding: 14px 16px; margin: 0 -16px 20px;
     padding-top: calc(14px + env(safe-area-inset-top));
     border-top: 3px solid #f59e0b;
     border-bottom: 3px solid #f59e0b;
+  }
+  .app-header::before {
+    content: '';
+    display: block;
+    height: 7px;
   }
   h1 { font-size: 1.3rem; margin: 0 0 16px; display: none; }
 
@@ -268,7 +273,7 @@
 <!-- Commit de teste: ajuste mínimo sem impacto visual -->
 
 <!-- ═══════ DASHBOARD ═══════ -->
-<div class="app-header">REMOÇÃO DE ESTILOS E SCRIPTS INLINE — v05</div>
+<div class="app-header">REMOÇÃO DE ESTILOS E SCRIPTS INLINE — v06</div>
 
 <div class="dashboard">
 
@@ -298,11 +303,6 @@
     <div class="progress-bar-dark">
       <div class="progress-bar-fill" style="width: 50.7%;"></div>
     </div>
-  </div>
-
-  <div class="in-progress">
-    <div class="in-progress-header"><span class="spinner"></span> Em andamento</div>
-    <div class="in-progress-item">—</div>
   </div>
 
   <div class="in-testing">
