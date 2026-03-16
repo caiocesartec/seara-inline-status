@@ -15,7 +15,8 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     max-width: 900px; margin: 0 auto;
-    padding: 0 16px 20px;
+    padding: 20px 16px;
+    padding-top: calc(20px + env(safe-area-inset-top));
     padding-bottom: calc(20px + env(safe-area-inset-bottom));
     padding-left: calc(16px + env(safe-area-inset-left));
     padding-right: calc(16px + env(safe-area-inset-right));
@@ -24,30 +25,13 @@
 
   /* ── Hero / Dashboard ── */
   .dashboard { margin-bottom: 15px; }
-  .app-header-spacer {
-    height: 0;
-    width: calc(100% + 32px);
-    margin-left: -16px;
-    margin-right: -16px;
-    padding: 0;
-    overflow: hidden;
-    background: transparent;
-    box-sizing: content-box;
-  }
-  /* Safari/WebKit only: faixa superior de 37px */
-  @supports (-webkit-touch-callout: none) {
-    .app-header-spacer {
-      height: 37px;
-      background: #1a1a1a;
-    }
-  }
   .app-header {
     background: linear-gradient(135deg, #1e293b, #334155);
     color: #fff; text-align: center; text-transform: uppercase;
     letter-spacing: 1.5px; font-size: 0.85rem; font-weight: 700;
-    padding: 14px 16px; margin: 0 -16px 20px;
+    padding: 14px 16px; margin: -20px -16px 20px;
+    margin-top: calc(-20px - env(safe-area-inset-top));
     padding-top: calc(14px + env(safe-area-inset-top));
-    border-top: 3px solid #f59e0b;
     border-bottom: 3px solid #f59e0b;
   }
   h1 { font-size: 1.3rem; margin: 0 0 16px; display: none; }
@@ -234,8 +218,7 @@
 
   /* ── Mobile ── */
   @media (max-width: 480px) {
-    body { padding: 0 10px 12px; }
-    .app-header-spacer { margin-left: -10px; margin-right: -10px; width: calc(100% + 20px); }
+    body { padding: 12px 10px; }
     .app-header { margin: -12px -10px 16px; font-size: 0.75rem; letter-spacing: 1px; padding: 12px 10px; }
     .progress-highlight { padding: 14px 16px; margin: 16px 0; }
     .progress-text { gap: 8px; }
@@ -258,8 +241,7 @@
     .done-feedback { font-size: 0.72rem; padding-left: 18px; }
   }
   @media (max-width: 360px) {
-    body { padding: 0 8px 10px; }
-    .app-header-spacer { margin-left: -8px; margin-right: -8px; width: calc(100% + 16px); }
+    body { padding: 10px 8px; }
     .app-header { margin: -10px -8px 14px; font-size: 0.68rem; letter-spacing: 0.5px; padding: 10px 8px; }
     .progress-highlight { padding: 12px 10px; }
     .progress-text { gap: 6px; }
@@ -283,11 +265,8 @@
 </head>
 <body>
 
-<!-- Commit de teste: ajuste mínimo sem impacto visual -->
-
 <!-- ═══════ DASHBOARD ═══════ -->
-<div class="app-header-spacer"></div>
-<div class="app-header">REMOÇÃO DE ESTILOS E SCRIPTS INLINE — v19</div>
+<div class="app-header">REMOÇÃO DE ESTILOS E SCRIPTS INLINE</div>
 
 <div class="dashboard">
 
@@ -306,7 +285,7 @@
     </div>
   </div>
 
-  <div class="progress"><div class="progress-bar" style="width: 56.34%"></div></div>
+  <div class="progress"><div class="progress-bar" style="width: 56.3%"></div></div>
 
   <div class="progress-highlight">
     <div class="progress-text">
@@ -319,14 +298,14 @@
     </div>
   </div>
 
-  <div class="in-testing">
-    <div class="in-testing-header"><span class="test-icon">🧪</span> Em testes</div>
-    <div class="in-testing-item">Receitas sob medida — accordion</div>
+  <div class="in-progress">
+    <div class="in-progress-header"><span class="spinner"></span> Em andamento</div>
+    <div class="in-progress-item">Single receita — iframe YT + Swiper + share</div>
   </div>
 
   <div class="current">
     <span class="current-label"><span class="next-icon">▶</span> Próximo:</span>
-    <span class="current-item">Single receita — iframe YT + Swiper + share</span>
+    <span class="current-item">Arquivo receitas — accordion</span>
   </div>
 </div>
 
@@ -339,16 +318,24 @@
   <div class="accordion-content">
     <ul>
       <li class="done">
-        <span class="done-title"><span class="check">&#10003;</span> 40. iFood contato — IBGE + CNPJ</span>
-        <span class="done-feedback">Criei assets/js/pages/page-ifood-contato.js com IBGE estados/cidades, máscaras telefone/CNPJ, validação, API validate_cnpj e submit send_form_ifood_contato (conversão). Removidos jQuery CDN, jquery-mask e Alerts.js inline e ~386 linhas de script. Enfileirado com is_page_template('page-ifood-contato.php') e dependências jquery-cdn e jquery-mask.</span>
+        <span class="done-title"><span class="check">&#10003;</span> 40. Single receita — iframe YT + Swiper + share</span>
+        <span class="done-feedback">Criei assets/js/pages/single-recipe.js com reload do iframe YT (cloneNode após 400ms), inicialização do Swiper e todos os share buttons (Facebook, WhatsApp, Twitter, LinkedIn, Pinterest, Email, Print). Imagem do Pinterest migrada para data-image no botão. Removido CDN Swiper inline e ~120 linhas de script. Enfileirado com is_singular('recipe') e dependência swiper-js.</span>
       </li>
       <li class="done">
-        <span class="done-title"><span class="check">&#10003;</span> 39. Gerador tabela nutricional filial — ViaCEP</span>
-        <span class="done-feedback">Criei assets/js/pages/page-generator-nutrition-tables-filial.js com máscaras jQuery (CNPJ, CEP) e ViaCEP no blur do CEP para preencher endereço, bairro, cidade e estado. Removidas ~27 linhas de script inline. Enfileirado com is_page_template('page-generator-nutrition-tables-filial.php') e dependências jquery-cdn e jquery-mask.</span>
+        <span class="done-title"><span class="check">&#10003;</span> 39. Receitas sob medida — accordion</span>
+        <span class="done-feedback">Criei assets/js/pages/page-recipes-made.js com accordion dos filtros, checkboxes tipo_negocio (multi) e categoria_receita (single), badges de filtro ativo com remoção individual e sincronização de URL via query params. Removido ~80 linhas de script inline. Enfileirado com is_page_template('page-recipes-made.php') e dependência jquery-cdn.</span>
       </li>
       <li class="done">
-        <span class="done-title"><span class="check">&#10003;</span> 38. Gerador tabela nutricional — accordion</span>
-        <span class="done-feedback">Criei assets/js/pages/page-generator-nutrition-tables.js com accordion dos filtros, filtros tipo/marca, badges, ViaCEP via redirecionamento e marcar checkboxes pela URL. Removido jQuery CDN redundante e ~150 linhas de script inline. Enfileirado com is_page_template('page-generator-nutrition-tables.php') e dependência jquery-cdn.</span>
+        <span class="done-title"><span class="check">&#10003;</span> 38. iFood contato — máscaras IBGE + CNPJ</span>
+        <span class="done-feedback">Criei assets/js/pages/page-ifood-contato.js com máscaras jQuery (CNPJ, telefone), busca IBGE de estados e cidades, e submit AJAX. Removido ~80 linhas de script inline do template. Enfileirado com is_page_template('page-ifood-contato.php') e dependências jquery-cdn, jquery-mask.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 37. Gerador tabela nutricional filial — CNPJ/CEP + ViaCEP</span>
+        <span class="done-feedback">Criei assets/js/pages/page-generator-nutrition-tables-filial.js com máscaras jQuery (CNPJ, CEP) e consulta ViaCEP para auto-fill de endereço. Removido script inline do template. Enfileirado com dependências jquery-cdn e jquery-mask.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 36. Gerador tabela nutricional — accordion</span>
+        <span class="done-feedback">Criei assets/js/pages/page-generator-nutrition-tables.js com accordion dos filtros de produto e tipo de embalagem. Removido script inline do template. Enfileirado com is_page_template('page-generator-nutrition-tables.php') e dependência jquery-cdn.</span>
       </li>
       <li class="done">
         <span class="done-title"><span class="check">&#10003;</span> 35. Institucional — Swiper</span>
@@ -502,7 +489,6 @@
   </summary>
   <div class="accordion-content">
     <ul>
-      <li class="todo"><span class="dash">–</span> Single receita — iframe YT + Swiper + share</li>
       <li class="todo"><span class="dash">–</span> Arquivo receitas — accordion</li>
       <li class="todo"><span class="dash">–</span> Blog Banners Gradina — JS dinâmico</li>
       <li class="todo"><span class="dash">–</span> Distributors Gradina</li>
