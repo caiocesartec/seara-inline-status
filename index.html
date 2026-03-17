@@ -272,11 +272,11 @@
 
   <div class="counters">
     <div class="counter-card card-done">
-      <div class="number">46</div>
+      <div class="number">47</div>
       <div class="label">Resolvidos</div>
     </div>
     <div class="counter-card card-pending">
-      <div class="number">5</div>
+      <div class="number">4</div>
       <div class="label">Pendentes</div>
     </div>
     <div class="counter-card card-postponed">
@@ -285,38 +285,45 @@
     </div>
   </div>
 
-  <div class="progress"><div class="progress-bar" style="width: 64.8%"></div></div>
+  <div class="progress"><div class="progress-bar" style="width: 66.2%"></div></div>
 
   <div class="progress-highlight">
     <div class="progress-text">
       <span class="label">Progresso Total</span>
-      <span class="value">46 de 71 itens</span>
-      <span class="percentage">(64.8%)</span>
+      <span class="value">47 de 71 itens</span>
+      <span class="percentage">(66.2%)</span>
     </div>
     <div class="progress-bar-dark">
-      <div class="progress-bar-fill" style="width: 64.8%;"></div>
+      <div class="progress-bar-fill" style="width: 66.2%;"></div>
     </div>
   </div>
 
-  <div class="in-testing">
-    <div class="in-testing-header"><span class="test-icon">🧪</span> Em testes</div>
-    <div class="in-testing-item">Single produto — Swiper + clickable card</div>
+  <div class="em-andamento-section">
+    <div class="em-andamento-text">
+      <span class="label">Em Andamento</span>
+      <span class="spinner"></span>
+      <span class="item">iFood regras produtos — marquee</span>
+    </div>
   </div>
 
   <div class="current">
     <span class="current-label"><span class="next-icon">▶</span> Próximo:</span>
-    <span class="current-item">iFood regras produtos — marquee</span>
+    <span class="current-item">Receita detalhe — scripts</span>
   </div>
 </div>
 
 <!-- ═══════ RESOLVIDOS (accordion) ═══════ -->
 <details class="accordion">
   <summary class="accordion-trigger">
-    <span class="left">Resolvidos <span class="pill pill-done">46 itens</span></span>
+    <span class="left">Resolvidos <span class="pill pill-done">47 itens</span></span>
     <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
   </summary>
   <div class="accordion-content">
     <ul>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 47. iFood regras produtos — marquee</span>
+        <span class="done-feedback">Extraído ~195 linhas de script inline de page-ifood-regras-produtos.php para assets/js/pages/page-ifood-regras-produtos.js. Preenche marquee com 100 itens alternando IFOOD e SEARA, carrega produtos obrigatórios e aceleradores dinamicamente. Enfileirado com is_page_template('page-ifood-regras-produtos.php') e dependências jquery-cdn. CSS do marquee já existente em components/marquee.css, compartilhado com page-ifood.php.</span>
+      </li>
       <li class="done">
         <span class="done-title"><span class="check">&#10003;</span> 46. Single produto — Swiper + clickable card</span>
         <span class="done-feedback">Extraídos 2 blocos de script inline (~70 linhas) de single-product.php para assets/js/pages/single-product.js. Swiper init para carousel de produtos relacionados + handler jQuery para cards clicáveis (.js-card-product). Enfileirado com is_singular('product') e dependências swiper-js + jquery-cdn.</span>
@@ -504,12 +511,11 @@
 <!-- ═══════ PENDENTES (accordion) ═══════ -->
 <details class="accordion">
   <summary class="accordion-trigger">
-    <span class="left">Pendentes <span class="pill pill-todo">5 itens</span></span>
+    <span class="left">Pendentes <span class="pill pill-todo">4 itens</span></span>
     <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
   </summary>
   <div class="accordion-content">
     <ul>
-      <li class="todo"><span class="dash">–</span> iFood regras produtos — marquee</li>
       <li class="todo"><span class="dash">–</span> Receita detalhe — scripts</li>
       <li class="todo"><span class="dash">–</span> Arquivo eventos — onclick history.back</li>
       <li class="todo"><span class="dash">–</span> Nav logado — onclick history.back</li>
