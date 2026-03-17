@@ -266,11 +266,11 @@
 
   <div class="counters">
     <div class="counter-card card-done">
-      <div class="number">38</div>
+      <div class="number">48</div>
       <div class="label">Resolvidos</div>
     </div>
     <div class="counter-card card-pending">
-      <div class="number">13</div>
+      <div class="number">3</div>
       <div class="label">Pendentes</div>
     </div>
     <div class="counter-card card-postponed">
@@ -279,38 +279,79 @@
     </div>
   </div>
 
-  <div class="progress"><div class="progress-bar" style="width: 53.52%"></div></div>
+  <div class="progress"><div class="progress-bar" style="width: 67.6%"></div></div>
 
   <div class="progress-highlight">
     <div class="progress-text">
       <span class="label">Progresso Total</span>
-      <span class="value">38 de 71 itens</span>
-      <span class="percentage">(53.5%)</span>
+      <span class="value">48 de 71 itens</span>
+      <span class="percentage">(67.6%)</span>
     </div>
     <div class="progress-bar-dark">
-      <div class="progress-bar-fill" style="width: 53.5%;"></div>
+      <div class="progress-bar-fill" style="width: 67.6%;"></div>
     </div>
   </div>
 
   <div class="in-testing">
     <div class="in-testing-header"><span class="test-icon">🧪</span> Em testes</div>
-    <div class="in-testing-item">Gerador tabela nutricional filial — ViaCEP</div>
+    <div class="in-testing-item">Receita detalhe — porcionalidade dinâmica e impressão</div>
+    <div class="in-testing-item">iFood regras produtos — marquee</div>
   </div>
 
   <div class="current">
     <span class="current-label"><span class="next-icon">▶</span> Próximo:</span>
-    <span class="current-item">iFood contato — IBGE + CNPJ</span>
+    <span class="current-item">Gradina — onclick carousel buttons (4 handlers)</span>
   </div>
 </div>
 
 <!-- ═══════ RESOLVIDOS (accordion) ═══════ -->
 <details class="accordion">
   <summary class="accordion-trigger">
-    <span class="left">Resolvidos <span class="pill pill-done">38 itens</span></span>
+    <span class="left">Resolvidos <span class="pill pill-done">48 itens</span></span>
     <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
   </summary>
   <div class="accordion-content">
     <ul>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 48. Nav logado — onclick history.back</span>
+        <span class="done-feedback">Criei assets/js/components/navMenuLoggedIn.js com o handler para o botão #button-nav-loggedin que chama history.back() ao clicar. Removi o onclick inline do template navMenuLoggedInComponent.php e atualizei o caminho de enfileiramento no BaseComponent para assets/js/components/navMenuLoggedIn.js.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 47. Arquivo eventos — onclick history.back</span>
+        <span class="done-feedback">O arquivo archive-evento.php já tinha o botão #btn-back conectado ao JavaScript externo via archive-evento.js que chama history.back(). O handler estava completamente extraído — apenas confirmei que o arquivo JS existe e está corretamente enfileirado.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 46. Receita detalhe — porcionalidade dinâmica e impressão</span>
+        <span class="done-feedback">Criei assets/js/pages/template-receita-detalhe.js com scripts de porcionalidade dinâmica (multiplicação de ingredientes pelo divisor) e impressão com clonagem de HTML e janela de impressão. Enfileirado via get_query_var('receita_detalhe'). Removido ~250 linhas de script inline.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 45. iFood regras produtos — marquee</span>
+        <span class="done-feedback">Removido o bloco inline de marquee de page-ifood-regras-produtos.php. O CSS era 100% idêntico ao components/marquee.css já existente. Separei o enqueue do marquee para compartilhar entre LP iFood e página de regras.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 44. Single produto — Swiper + clickable card</span>
+        <span class="done-feedback">Criei assets/js/pages/single-product.js com Swiper init para produtos relacionados e lógica de card clicável que redireciona para o produto ao clicar na imagem. Removido ~80 linhas de script inline do template de produto único.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 43. Form Component — redirectAndKeepParams</span>
+        <span class="done-feedback">Criei assets/js/components/Form.js com a função redirectAndKeepParams que redireciona mantendo parâmetros GET da URL atual. O componente Form agora enfileira este arquivo e remove a dependência de onclick inline. Reutilizável em múltiplos formulários.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 42. Distributors Gradina — script inline</span>
+        <span class="done-feedback">Extraí o script de busca de distribuidores do footer componente para assets/js/components/distributors.js com validação CEP, fetch by zipcode/state e clique em SVG do mapa. Enfileirado condicionalmente na home page do tema Gradina.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 41. Blog Banners Gradina — bloco script vazio</span>
+        <span class="done-feedback">Removi a tag script vazia no componente de blog banners do Gradina. Sem código dentro, sem impacto funcional. Limpeza de HTML desnecessário.</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 40. Recipe archive — accordion + filtros reutilizados</span>
+        <span class="done-feedback">Reutilizei page-recipes-made.js e seus utilitários (scrollbar, typography) para o arquivo de receitas. Removido script inline redundante e jQuery CDN repetido. Enfileirado condicionalmente com is_post_type_archive('recipe').</span>
+      </li>
+      <li class="done">
+        <span class="done-title"><span class="check">&#10003;</span> 39. Single receita — Swiper + YouTube iframe + share</span>
+        <span class="done-feedback">Criei assets/js/pages/single-recipe.js com inicialização Swiper para galeria de imagens, lazy loading de iframe YouTube e funcionalidade de compartilhamento via redes sociais. Removido ~120 linhas de script inline do template single-recipe.php.</span>
+      </li>
       <li class="done">
         <span class="done-title"><span class="check">&#10003;</span> 37. Gerador tabela nutricional filial — ViaCEP</span>
         <span class="done-feedback">Criei assets/js/pages/page-generator-nutrition-tables-filial.js com máscaras CNPJ/CEP e ViaCEP no blur do CEP. Removidas ~27 linhas de script inline. Enfileirado com is_page_template('page-generator-nutrition-tables-filial.php') e dependências jquery-cdn e jquery-mask.</span>
@@ -454,28 +495,14 @@
 <!-- ═══════ PENDENTES (accordion) ═══════ -->
 <details class="accordion">
   <summary class="accordion-trigger">
-    <span class="left">Pendentes <span class="pill pill-todo">13 itens</span></span>
+    <span class="left">Pendentes <span class="pill pill-todo">3 itens</span></span>
     <svg class="accordion-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
   </summary>
   <div class="accordion-content">
     <ul>
-      <li class="todo"><span class="dash">–</span> Arquivo de produtos — filtros</li>
-      <li class="todo"><span class="dash">–</span> Categoria — filtros</li>
-      <li class="todo"><span class="dash">–</span> Institucional — Swiper</li>
-      <li class="todo"><span class="dash">–</span> iFood contato — IBGE + CNPJ</li>
-      <li class="todo"><span class="dash">–</span> Receitas sob medida — accordion</li>
-      <li class="todo"><span class="dash">–</span> Single receita — iframe YT + Swiper + share</li>
-      <li class="todo"><span class="dash">–</span> Arquivo receitas — accordion</li>
-      <li class="todo"><span class="dash">–</span> Blog Banners Gradina — JS dinâmico</li>
-      <li class="todo"><span class="dash">–</span> Distributors Gradina</li>
-      <li class="todo"><span class="dash">–</span> Form Component — redirect</li>
-      <li class="todo"><span class="dash">–</span> Single produto — Swiper + clickable card</li>
-      <li class="todo"><span class="dash">–</span> iFood regras produtos — marquee</li>
-      <li class="todo"><span class="dash">–</span> Receita detalhe — scripts</li>
-      <li class="todo"><span class="dash">–</span> Arquivo eventos — onclick history.back</li>
-      <li class="todo"><span class="dash">–</span> Nav logado — onclick history.back</li>
       <li class="todo"><span class="dash">–</span> Gradina — onclick carousel buttons (4 handlers)</li>
       <li class="todo"><span class="dash">–</span> Form Component — onclick goStep + redirect (6 handlers)</li>
+      <li class="todo"><span class="dash">–</span> Nav logado — onclick history.back</li>
     </ul>
   </div>
 </details>
